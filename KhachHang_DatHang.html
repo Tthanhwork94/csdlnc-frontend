@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery|Khach hang</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
+                    <li><a href="KhachHang_DatHang.html">Đặt hàng</a></li>
+                    <li><a href="KhachHang_XemDonHang.html">Xem đơn hàng</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+
+    <!-- Center-->
+    <div class="center-doitacthemhopdong" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Danh sách đối tác</h2>
+                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                        <tr>
+                            <th>Mã đối tác</th>
+                            <th>Email</th>
+                            <th>Tên quán</th>
+                            <th>Loại ẩm thực</th>
+                            <th>Địa chỉ</th>
+                            <th>SDT</th>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>1</td>
+                            <td>abc@gmail.com</td>
+                            <td>Ngon ngon ngon</td>
+                            <td>Cơm bún phở</td>
+                            <td>Thủ Đức</td>
+                            <td>0123456789</td>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>2</td>
+                            <td>abc@gmail.com</td>
+                            <td>Măm măm</td>
+                            <td>Buffet</td>
+                            <td>Tân Phú</td>
+                            <td>0123456789</td>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>3</td>
+                            <td>abc@gmail.com</td>
+                            <td>Hoằng Đạt</td>
+                            <td>Lẫu chay</td>
+                            <td>Thủ Đức</td>
+                            <td>0123456789</td>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>4</td>
+                            <td>abc@gmail.com</td>
+                            <td>Hằng Thiện</td>
+                            <td>Lẫu chay</td>
+                            <td>Thủ Đức</td>
+                            <td>0123456789</td>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>4</td>
+                            <td>abc@gmail.com</td>
+                            <td>Hằng Thiện</td>
+                            <td>Lẫu chay</td>
+                            <td>Thủ Đức</td>
+                            <td>0123456789</td>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>4</td>
+                            <td>abc@gmail.com</td>
+                            <td>Hằng Thiện</td>
+                            <td>Lẫu chay</td>
+                            <td>Thủ Đức</td>
+                            <td>0123456789</td>
+                        </tr>
+                    </table>
+
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
+                    <label for="madoitac">Mã đối tác:</label>
+                    <input type="text" name="madoitac" id="madoitac" placeholder="Nhập mã đối tác" />
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                        Xem thực đơn
+                    </button>
+                    <br>
+                    <!-- Modal -->
+                    <div class="modal" id="exampleModal2">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Đặt hàng</h2>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <h3>Thực đơn</h3>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã đối tác</th>
+                                                <th>Mã món</th>
+                                                <th>Tên món</th>
+                                                <th>Miêu tả</th>
+                                                <th>Giá</th>
+                                                <th>Tình trạng</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>1</td>
+                                                <td>Cơm gà</td>
+                                                <td>Chua mặn ngọt</td>
+                                                <td>30000</td>
+                                                <td>Còn bán</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <form action="#" id="khachhangthemmon">
+                                        <h3>Chọn món</h3>
+                                        <label for="mamonan">Mã món ăn:</label>
+                                        <input type="text" name="mamonan" id="mamonan" placeholder="Nhập mã món ăn" />
+                                        <label for="soluongmonan">Số lượng:</label>
+                                        <input type="text" name="soluongmonan" id="soluongmonan"
+                                            placeholder="Nhập số lượng" />
+                                        <br>
+                                        <br>
+                                        <label for="tuychonmonan">Tuỳ chọn:</label>
+                                        <input type="text" name="tuychonmonan" id="tuychonmonan"
+                                            placeholder="Nhập tuỳ chọn món ăn" />
+                                        <button type="submit" class="btn btn-primary">Thêm</button>
+                                    </form>
+                                    <br>
+                                    <form action="#" id="khachhangthemthongtin">
+                                        <h3>Thông tin giao hàng</h3>
+                                        <label for="sdtkhachhang">SDT:</label>
+                                        <input type="text" name="sdtkhachhang" id="sdtkhachhang"
+                                            placeholder="Nhập SDT giao" />
+                                        <label for="diachigiaohang">Địa chỉ:</label>
+                                        <input type="text" name="diachigiaohang" id="diachigiaohang"
+                                            placeholder="Nhập địa chỉ giao" />
+                                        <button type="submit" class="btn btn-primary">Thêm</button>
+                                    </form>
+                                    <br>
+                                    <h3>Thành tiền</h3>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Mã đơn hàng</th>
+                                                <th>Ngày lập</th>
+                                                <th>Tổng số lượng</th>
+                                                <th>Phí vận chuyển</th>
+                                                <th>Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>2022-11-11</td>
+                                                <td>3</td>
+                                                <td>30000</td>
+                                                <td>530000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary">Xác nhận</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery | Doi Tac</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="DoiTac_Home.html">Trang chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hợp đồng <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemHopDong.html">Thêm hợp đồng</a></li>
+                            <li><a href="DoiTac_XemHopDong.html">Xem hợp đồng</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Chi nhánh<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemChiNhanh.html">Thêm chi nhánh</a></li>
+                            <li><a href="DoiTac_XemChiNhanh.html">Xem chi nhánh</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Món ăn<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemMonAn.html">Thêm món ăn</a></li>
+                            <li><a href="DoiTac_XemMonAn.html">Xem thực đơn</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="DoiTac_DonHang.html">Đơn hàng</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+
+    <!-- Center-->
+    <div class="center-doitacthemhopdong" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Thông tin đối tác</h2>
+                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                        <tr>
+                            <th>Mã đối tác</th>
+                            <th>Email</th>
+                            <th>Tên quán</th>
+                            <th>Người đại diện</th>
+                            <th>Số lượng chi nhánh</th>
+                            <th>Đơn hàng dự kiến</th>
+                            <th>Loại ẩm thực</th>
+                            <th>Địa chỉ kinh doanh</th>
+                            <th>SĐT</th>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>1</td>
+                            <td>abc@gmail.com</td>
+                            <td>Ngô Quyền</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>5</td>
+                            <td>200</td>
+                            <td>Cơm</td>
+                            <td>Thủ Đức</td>
+                            <td>0123456789</td>
+                        </tr>
+                    </table>
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Chỉnh sửa
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin đối tác</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="formthem" action="#">
+                                            <label for="emaildoitac">Email:</label>
+                                            <br>
+                                            <input type="email" name="emaildoitac" id="emaildoitac"
+                                                placeholder="Nhập email" />
+                                            <br>
+                                            <br>
+                                            <label for="tenquandoitac">Tên quán:</label>
+                                            <br>
+                                            <input type="text" name="tenquandoitac" id="tenquandoitac"
+                                                placeholder="Nhập tên quán" />
+                                            <br>
+                                            <br>
+                                            <label for="nguoidaidien">Người đại diện:</label>
+                                            <br>
+                                            <input type="text" name="nguoidaidien" id="nguoidaidien"
+                                                placeholder="Nhập người đại diện" />
+                                            <br>
+                                            <br>
+                                            <label for="soluongchinhanh">Số lượng chi nhánh:</label>
+                                            <br>
+                                            <input type="text" name="soluongchinhanh" id="soluongchinhanh"
+                                                placeholder="Nhập số lượng chi nhánh" />
+                                            <br>
+                                            <br>
+                                            <label for="donhangdukien">Đơn hàng dự kiến:</label>
+                                            <br>
+                                            <input type="text" name="donhangdukien" id="donhangdukien"
+                                                placeholder="Nhập số lượng chi nhánh" />
+                                            <br>
+                                            <br>
+                                            <label for="loaiamthuc">Loại ẩm thực:</label>
+                                            <br>
+                                            <input type="text" name="loaiamthuc" id="loaiamthuc"
+                                                placeholder="Nhập loại ẩm thực" />
+                                            <br>
+                                            <br>
+                                            <label for="diachikinhdoanh">Địa chỉ kinh doanh:</label>
+                                            <br>
+                                            <input type="text" name="diachikinhdoanh" id="diachikinhdoanh"
+                                                placeholder="Nhập địa chỉ kinh doanh" />
+                                            <br>
+                                            <br>
+                                            <label for="sdtdoitac">SDT:</label>
+                                            <br>
+                                            <input type="text" name="sdtdoitac" id="sdtdoitac" placeholder="Nhập SDT" />
+                                            <br>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Đổi mật khẩu -->
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doimatkhau">
+                        Đổi mật khẩu
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="doimatkhau" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="formthem" action="#">
+                                            <label for="matkhau">Mật khẩu hiện tại:</label>
+                                            <br>
+                                            <input type="text" name="matkhau" id="matkhau"
+                                                placeholder="Nhập mật khẩu hiện tại" />
+                                            <br>
+                                            <label for="matkhaumoi">Mật khẩu mới:</label>
+                                            <br>
+                                            <input type="password" name="matkhaumoi" id="matkhaumoi"
+                                                placeholder="Nhập mật khẩu" />
+                                            <br>
+                                            <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
+                                            <br>
+                                            <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
+                                                placeholder="Nhập lại mật khẩu" />
+                                            <br>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

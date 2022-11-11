@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery | Tai xe</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="TaiXe_Home.html">Trang chủ</a></li>
+                    <li><a href="TaiXe_XemDonHang.html">Xem đơn hàng</a></li>
+                    <li><a href="TaiXe_DangGiao.html">Đang giao</a></li>
+                    <li><a href="TaiXe_ThongKe.html">Thống kê</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="TaiXe_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+
+    <!-- Center-->
+    <div class="center-doitacthemhopdong" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Thông tin Tài xế</h2>
+                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                        <tr>
+                            <th>Mã tài xế</th>
+                            <th>Họ tên</th>
+                            <th>CMND</th>
+                            <th>SDT</th>
+                            <th>Địa chỉ</th>
+                            <th>Biển số xe</th>
+                            <th>KV hoạt động</th>
+                            <th>Email</th>
+                            <th>STK</th>
+                        </tr>
+                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                            <td>1</td>
+                            <td>Nguyễn Văn B</td>
+                            <td>0123456789</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>74F1-00078</td>
+                            <td>Thủ Đức</td>
+                            <td>abc@gmail.com</td>
+                            <td>0123456789</td>
+                        </tr>
+                    </table>
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Chỉnh sửa
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin khách hàng</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="formthem" action="#">
+                                            <label for="hotenkhachhang">Họ tên:</label>
+                                            <br>
+                                            <input type="text" name="hotenkhachhang" id="hotenkhachhang"
+                                                placeholder="Nhập họ tên" />
+                                            <br>
+                                            <label for="cmnd">CMND:</label>
+                                            <br>
+                                            <input type="text" name="cmnd" id="cmnd" placeholder="Nhập CMND" />
+                                            <br>
+                                            <label for="sdtkhachhang">SDT:</label>
+                                            <br>
+                                            <input type="text" name="sdtkhachhang" id="sdtkhachhang"
+                                                placeholder="Nhập SDT" />
+                                            <br>
+                                            <label for="diachikhachhang">Địa chỉ:</label>
+                                            <br>
+                                            <input type="text" name="diachikhachhang" id="diachikhachhang"
+                                                placeholder="Nhập địa chỉ" />
+                                            <br>
+                                            <label for="biensoxe">Biển số xe:</label>
+                                            <br>
+                                            <input type="text" name="biensoxe" id="biensoxe"
+                                                placeholder="Nhập biển số xe" />
+                                            <br>
+                                            <label for="kvhoatdong">KV hoạt động:</label>
+                                            <br>
+                                            <input type="text" name="kvhoatdong" id="kvhoatdong"
+                                                placeholder="Nhập khu vực hoạt động" />
+                                            <br>
+                                            <label for="emailkhachhang">Email:</label>
+                                            <br>
+                                            <input type="email" name="emailkhachhang" id="emailkhachhang"
+                                                placeholder="Nhập email" />
+                                            <br>
+                                            <label for="stk">STK:</label>
+                                            <br>
+                                            <input type="text" name="stk" id="stk" placeholder="Nhập STK" />
+                                            <br>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Đổi mật khẩu -->
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doimatkhau">
+                        Đổi mật khẩu
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="doimatkhau" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h2>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form class="formthem" action="#">
+                                            <label for="matkhau">Mật khẩu hiện tại:</label>
+                                            <br>
+                                            <input type="text" name="matkhau" id="matkhau"
+                                                placeholder="Nhập mật khẩu hiện tại" />
+                                            <br>
+                                            <label for="matkhaumoi">Mật khẩu mới:</label>
+                                            <br>
+                                            <input type="password" name="matkhaumoi" id="matkhaumoi"
+                                                placeholder="Nhập mật khẩu" />
+                                            <br>
+                                            <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
+                                            <br>
+                                            <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
+                                                placeholder="Nhập lại mật khẩu" />
+                                            <br>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
