@@ -11,7 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>    
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="validate.js" defer></script>
+    <script src="themMonAn.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -66,15 +69,14 @@
     </nav>
 
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-sm-12">
                     <div class="form-add">
-                        <form action="#" id="registration">
+                        <form action="#" name="add-product">
                             <h2>Thêm món ăn</h2>
                             <label for="tenmonan">Tên món ăn:</label>
-                            <br>
                             <input type="text" name="tenmonan" id="tenmonan" placeholder="Nhập tên món ăn" />
                             <label for="mieutamonan">Miêu tả:</label>
                             <input type="text" name="mieutamonan" id="mieutamonan"
@@ -82,15 +84,13 @@
                             <label for="giamonan">Giá:</label>
                             <input type="text" name="giamonan" id="giamonan" placeholder="Nhập giá" />
                             <label for="tinhtrangmonan">Tình trạng:</label>
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select class="form-control" aria-label=".form-select-sm example">
                                 <option value="con">Còn</option>
                                 <option value="het">Hết</option>
                                 <option value="ngungban">Ngưng bán</option>
                             </select>
                             <br>
-                            <br>
-
-                            <button type="submit">Thêm</button>
+                            <button type="submit" id="themsp">Thêm</button>
 
                         </form>
                     </div>

@@ -11,7 +11,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="suaThongTin.js" defer></script>
+    <script src="doiMatKhau.js" defer></script>
+    <script src="validate.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -67,12 +71,12 @@
     </nav>
 
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2>Thông tin đối tác</h2>
-                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                    <table class='table'>
                         <tr>
                             <th>Mã đối tác</th>
                             <th>Email</th>
@@ -84,7 +88,7 @@
                             <th>Địa chỉ kinh doanh</th>
                             <th>SĐT</th>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>abc@gmail.com</td>
                             <td>Ngô Quyền</td>
@@ -98,123 +102,94 @@
                     </table>
                     <!-- Modal -->
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Chỉnh sửa
-                    </button>
+                    <button id="fix-inf" class="btn-modal">Chỉnh sửa</button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                    <div id="Model-fix-inf" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" action="#" name="add-product">
                                 <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin đối tác</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h2 class="modal-title">Thông tin cá nhân</h2>
+                                    <span class="close">&times;</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="emaildoitac">Email:</label>
+                                    <label for="email">Email:</label>
                                             <br>
-                                            <input type="email" name="emaildoitac" id="emaildoitac"
+                                            <input type="email" name="email" id="email"
                                                 placeholder="Nhập email" />
                                             <br>
+                                            <label for="tenquan">Tên quán:</label>
                                             <br>
-                                            <label for="tenquandoitac">Tên quán:</label>
-                                            <br>
-                                            <input type="text" name="tenquandoitac" id="tenquandoitac"
+                                            <input type="text" name="tenquan" id="tenquan"
                                                 placeholder="Nhập tên quán" />
-                                            <br>
                                             <br>
                                             <label for="nguoidaidien">Người đại diện:</label>
                                             <br>
                                             <input type="text" name="nguoidaidien" id="nguoidaidien"
                                                 placeholder="Nhập người đại diện" />
                                             <br>
-                                            <br>
-                                            <label for="soluongchinhanh">Số lượng chi nhánh:</label>
-                                            <br>
-                                            <input type="text" name="soluongchinhanh" id="soluongchinhanh"
-                                                placeholder="Nhập số lượng chi nhánh" />
-                                            <br>
-                                            <br>
                                             <label for="donhangdukien">Đơn hàng dự kiến:</label>
                                             <br>
-                                            <input type="text" name="donhangdukien" id="donhangdukien"
-                                                placeholder="Nhập số lượng chi nhánh" />
-                                            <br>
+                                            <input type="number" name="donhangdukien" id="donhangdukien"
+                                                placeholder="Nhập số lượng đơn hàng dự kiến" />
                                             <br>
                                             <label for="loaiamthuc">Loại ẩm thực:</label>
                                             <br>
                                             <input type="text" name="loaiamthuc" id="loaiamthuc"
                                                 placeholder="Nhập loại ẩm thực" />
                                             <br>
+                                            <label for="diachi">Địa chỉ kinh doanh:</label>
                                             <br>
-                                            <label for="diachikinhdoanh">Địa chỉ kinh doanh:</label>
-                                            <br>
-                                            <input type="text" name="diachikinhdoanh" id="diachikinhdoanh"
+                                            <input type="text" name="diachi" id="diachi"
                                                 placeholder="Nhập địa chỉ kinh doanh" />
                                             <br>
+                                            <label for="sdt">SDT:</label>
                                             <br>
-                                            <label for="sdtdoitac">SDT:</label>
+                                            <input type="text" name="sdt" id="sdt" placeholder="Nhập SDT" />
                                             <br>
-                                            <input type="text" name="sdtdoitac" id="sdtdoitac" placeholder="Nhập SDT" />
-                                            <br>
-                                        </form>
-                                    </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
+                                        đổi</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <!-- Đổi mật khẩu -->
                     <!-- Modal -->
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doimatkhau">
-                        Đổi mật khẩu
-                    </button>
+                    <button id="fix-password" class="btn-modal">Đổi mật khẩu</button>
                     <!-- Modal -->
-                    <div class="modal fade" id="doimatkhau" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                    <div id="Model-fix-password" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" name="fix-pass" action="#">
                                 <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h2 class="modal-title">Đổi mật khẩu</h2>
+                                    <span class="close2">&times;</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="matkhau">Mật khẩu hiện tại:</label>
-                                            <br>
-                                            <input type="text" name="matkhau" id="matkhau"
-                                                placeholder="Nhập mật khẩu hiện tại" />
-                                            <br>
-                                            <label for="matkhaumoi">Mật khẩu mới:</label>
-                                            <br>
-                                            <input type="password" name="matkhaumoi" id="matkhaumoi"
-                                                placeholder="Nhập mật khẩu" />
-                                            <br>
-                                            <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
-                                            <br>
-                                            <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
-                                                placeholder="Nhập lại mật khẩu" />
-                                            <br>
-                                        </form>
-                                    </div>
+                                    <label for="matkhau">Mật khẩu hiện tại:</label>
+                                    <br>
+                                    <input type="text" name="matkhau" id="matkhau"
+                                        placeholder="Nhập mật khẩu hiện tại" />
+                                    <br>
+                                    <label for="matkhaumoi">Mật khẩu mới:</label>
+                                    <br>
+                                    <input type="password" name="matkhaumoi" id="matkhaumoi"
+                                        placeholder="Nhập mật khẩu" />
+                                    <br>
+                                    <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
+                                    <br>
+                                    <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
+                                        placeholder="Nhập lại mật khẩu" />
+                                    <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -222,7 +197,7 @@
         </div>
     </div>
     <!-- Footer -->
-    <div class="footer navbar-fixed-bottom">
+    <div class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">

@@ -11,9 +11,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="index.js"></script>
+    <script src="xemChiNhanh.js" defer></script>
+    <script src="validate.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -68,12 +70,21 @@
     </nav>
 
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách chi nhánh</h2>
-                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                    <br>
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="machinhanh" id="lbmachinhanh">Mã chi nhánh:</label>
+                        <input class="inputNhap" type="text" name="machinhanh" id="machinhanh"
+                            placeholder="Nhập mã chi nhánh" />
+                        <button type="submit" id="chitietsanpham" class="btn-modal">Chỉnh sửa</button>
+                        <button type="submit" id="xoasanpham" class="btn-modal">Xoá</button>
+                    </form>
+                    <br>
+                    <table class='table'>
                         <tr>
                             <th>Mã chi nhánh</th>
                             <th>Tên chi nhánh</th>
@@ -82,7 +93,7 @@
                             <th>Giờ đóng cửa</th>
                             <th>Tình trạng</th>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -90,7 +101,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -98,7 +109,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -106,7 +117,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -114,7 +125,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -122,7 +133,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -130,7 +141,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -138,7 +149,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -146,7 +157,7 @@
                             <td>22:00</td>
                             <td>Mở cửa</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>Ngô Quyền 1</td>
                             <td>Linh Trung - Thủ Đức</td>
@@ -156,67 +167,49 @@
                         </tr>
                     </table>
                     <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Chỉnh sửa
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                    <div id="model-chitietsanpham" class="modal">
+                        <div class="modal-content">
+                            <!-- 2 form co name trung nhau -->
+                            <form action="#" name="fix-product"> 
                                 <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin đối tác</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h2 class="modal-title">Chỉnh sửa chi nhánh</h2>
+                                    <span class="close">&times;</span>
                                 </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="machinhanh">Mã chi nhánh:</label>
-                                            <br>
-                                            <input type="text" name="machinhanh" id="machinhanh"
-                                                placeholder="Nhập mã chi nhánh" />
-                                            <br>
-                                            <label for="tenchinhanh">Tên chi nhánh:</label>
-                                            <br>
-                                            <input type="text" name="tenchinhanh" id="tenchinhanh"
-                                                placeholder="Nhập tên chi nhánh" />
-                                            <br>
-                                            <label for="diachichinhanh">Địa chỉ:</label>
-                                            <br>
-                                            <input type="text" name="diachichinhanh" id="diachichinhanh"
-                                                placeholder="Nhập địa chỉ chi nhánh" />
-                                            <br>
-                                            <label for="giomocuachinhanh">Giờ mở cửa:</label>
-                                            <br>
-                                            <input type="text" name="giomocuachinhanh" id="giomocuachinhanh"
-                                                placeholder="hh:mm" />
-                                            <br>
-                                            <label for="giodongcuachinhanh">Giờ đóng cửa:</label>
-                                            <br>
-                                            <input type="text" name="giodongcuachinhanh" id="giodongcuachinhanh"
-                                                placeholder="hh:mm" />
-                                            <br>
-                                            <label for="tinhtrangchinhanh">Tình trạng:</label>
-                                            <br>
-                                            <select class="form-select form-select-sm"
-                                                aria-label=".form-select-sm example">
-                                                <option value="binhthuong">Bình thường</option>
-                                                <option value="tamnghi">Tạm nghỉ</option>
-                                            </select>
-                                        </form>
-                                    </div>
+
+                                <div class="modal-body inputModal">
+                                    <label for="tenchinhanh">Tên chi nhánh:</label>
+                                    <br>
+                                    <input type="text" name="tenchinhanh" id="tenchinhanh"
+                                        placeholder="Nhập tên chi nhánh" />
+                                    <br>
+                                    <label for="diachichinhanh">Địa chỉ:</label>
+                                    <br>
+                                    <input type="text" name="diachichinhanh" id="diachichinhanh"
+                                        placeholder="Nhập địa chỉ chi nhánh" />
+                                    <br>
+                                    <label for="giomocuachinhanh">Giờ mở cửa:</label>
+                                    <br>
+                                    <input type="time" name="giomocuachinhanh" id="giomocuachinhanh">
+                                    <br>
+                                    <label for="giodongcuachinhanh">Giờ đóng cửa:</label>
+                                    <br>
+                                    <input type="time" name="giodongcuachinhanh" id="giodongcuachinhanh">
+                                    <br>
+                                    <label for="tinhtrangchinhanh">Tình trạng:</label>
+                                    <br>
+                                    <select class="form-control"
+                                        aria-label=".form-select-sm example">
+                                        <option value="binhthuong">Bình thường</option>
+                                        <option value="tamnghi">Tạm nghỉ</option>
+                                    </select>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                    <button type="submit" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>

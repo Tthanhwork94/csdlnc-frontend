@@ -11,7 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="donHang.js" defer></script>
+    <script src="validate.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -66,118 +69,22 @@
     </nav>
 
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách đơn hàng</h2>
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <label for="madonhang">Mã đơn hàng:</label>
-                    <input type="text" name="madonhang" id="madonhang" placeholder="Nhập mã đơn hàng" />
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Xem chi tiết đơn hàng
-                    </button>
                     <br>
-                    <!-- Modal -->
-                    <div class="modal" id="exampleModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Xem chi tiết đơn hàng</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Mã đơn hàng</th>
-                                                <th>Mã món</th>
-                                                <th>Số lượng</th>
-                                                <th>Đơn giá</th>
-                                                <th>Tuỳ chọn</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>50000</td>
-                                                <td>Không hành</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>1</td>
-                                                <td>30000</td>
-                                                <td>full toping</td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="madonhang" id="lbmadonhang">Mã đơn hàng:</label>
+                        <input class="inputNhap" type="text" name="madonhang" id="madonhang"
+                            placeholder="Nhập mã đơn hàng" />
+                        <button type="submit" id="chitietsanpham" class="btn-modal">Chi tiết</button>
+                        <button type="submit" id="dangxuly" class="btn-modal">Đang xử lý</button>
+                        <button type="submit" id="daxuly" class="btn-modal">Đã xử lý</button>
+                    </form>
                     <br>
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalDH">
-                        Chỉnh sửa đơn hàng
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalDH" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Chỉnh sửa đơn hàng</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="madonhang">Mã đơn hàng:</label>
-                                            <br>
-                                            <input type="text" name="madonhang" id="madonhang"
-                                                placeholder="Nhập mã đơn hàng" />
-                                            <br>
-                                            <label for="tinhtrangdonhang">Tình trạng:</label>
-                                            <br>
-                                            <select class="form-select form-select-sm"
-                                                aria-label=".form-select-sm example">
-                                                <option value="chonhan">Chờ nhận</option>
-                                                <option value="dangxuly">Đang xử lý</option>
-                                                <option value="daxuly">Đã xử lý</option>
-                                            </select>
-                                            <br>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                    <table class='table'>
                         <tr>
                             <th>Mã đơn hàng</th>
                             <th>Ngày lập</th>
@@ -191,7 +98,7 @@
                             <th>Mã tài xế</th>
                             <th>Mã khách hàng</th>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -204,7 +111,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -217,7 +124,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -230,7 +137,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -243,7 +150,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -256,7 +163,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -269,7 +176,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -282,7 +189,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -295,7 +202,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -308,7 +215,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -321,7 +228,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -334,7 +241,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -347,7 +254,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -360,7 +267,7 @@
                             <td>2</td>
                             <td>2</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
@@ -375,6 +282,59 @@
                         </tr>
 
                     </table>
+                    <!-- modal gio hang -->
+                    <div id="exampleModal" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Xem chi tiết đơn hàng</h2>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn hàng</th>
+                                            <th>Mã món</th>
+                                            <th>Tên món</th>
+                                            <th>Số lượng</th>
+                                            <th>Đơn giá</th>
+                                            <th>Tuỳ chọn</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>Cơm</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                            <td>Không hành</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>Rau</td>
+                                            <td>2</td>
+                                            <td>10000đ</td>
+                                            <td>Không hành</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>3</td>
+                                            <td>Thịt gà</td>
+                                            <td>1</td>
+                                            <td>5000đ</td>
+                                            <td>Không hành</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
