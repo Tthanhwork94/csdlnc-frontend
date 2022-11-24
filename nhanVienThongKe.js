@@ -17,7 +17,7 @@ var order = document.getElementById("xemdoanhthungay");
 order.onclick = function () {
   var check =document.getElementById("doanhthungay").value ;
   if (check!=""){
-    var str ="Số đơn hàng: 1000 | Doanh thu: 50000000VND | Hoa hồng thu được: 5000000VND "
+    var str ="Mã đối tác: 1 | Số đơn hàng: 1000 | Doanh thu: 50000000VND | Hoa hồng thu được: 5000000VND"
     document.getElementById("table1").innerHTML = str;
     }
   }
@@ -27,7 +27,7 @@ var revenueMonth = document.getElementById("xemdoanhthuthang");
 revenueMonth.onclick = function () {
   var check =document.getElementById("doanhthuthang").value ;
   if (check!=""){
-    var str ="Số đơn hàng: 50000 | Doanh thu: 500000000VND | Hoa hồng thu được: 50000000VND "
+    var str ="Mã đối tác: 1 | Số đơn hàng: 50000 | Doanh thu: 500000000VND | Hoa hồng thu được: 50000000VND "
     document.getElementById("table2").innerHTML = str;
     }
   }

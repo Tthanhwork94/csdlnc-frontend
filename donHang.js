@@ -28,17 +28,8 @@ btn2.onclick  = function () {
   var check =document.getElementById("madonhang").value ;
   if (check!="")
   {
-    alert("Đơn hàng đang được xử lý")
+    alert("Đơn hàng đang được chuẩn bị")
   }
 }
 
-// button đã xử lý
-var btn3 = document.getElementById("daxuly");
-btn3.onclick  = function () {
-  var check =document.getElementById("madonhang").value ;
-  if (check!="")
-  {
-    alert("Đơn hàng đã xử lý xong")
-  }
-}
 

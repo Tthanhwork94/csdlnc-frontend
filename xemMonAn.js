@@ -32,16 +32,6 @@ window.onclick = function (event) {
   }
 }
 
-// xoá sản phẩm
-var btn3 = document.getElementById("xoasanpham");
-btn3.onclick  = function () {
-  var check =document.getElementById("masanpham").value ;
-  if (check!="")
-  {
-    alert("Xoá sản phẩm thành công")
-  }
-}
-
 // check nhập trong chỉnh sửa
 $(function() {
   $("form[name='fix-product']").validate({

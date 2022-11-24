@@ -76,10 +76,9 @@ var order = document.getElementById("nhaphang");
 order.onclick = function () {
   var check =document.getElementById("ngaylap").value ;
   var check2 =document.getElementById("ngayhethan").value ;
-  var check3 =document.getElementById("nguoidaidien").value ;
   var check4 =document.getElementById("stk").value ;
   var check5 =document.getElementById("nganhang").value ;
-  if (check!="" && check2!="" && check3!="" && check4!="" && check5!=""){
+  if (check!="" && check2!="" && check4!="" && check5!=""){
   for (var i = 0; i < order.length; i++) {
           var button = order[i]
           button.addEventListener("click", function () {
