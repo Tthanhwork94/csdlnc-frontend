@@ -12,6 +12,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="validate.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -46,12 +48,20 @@
     </nav>
 
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách đối tác</h2>
-                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                    <br>
+                    <form action="KhachHang_DatHangChonMon.html" name="add-product">
+                        <label class="labelNhap" for="madoitac" id="lbmadoitac">Mã đối tác:</label>
+                        <input class="inputNhap" type="text" name="madoitac" id="madoitac"
+                            placeholder="Nhập mã đối tác" />
+                        <button type="submit" id="luachondoitac" class="btn-modal">Lựa chọn</button>
+                    </form>
+                    <br>
+                    <table class='table'>
                         <tr>
                             <th>Mã đối tác</th>
                             <th>Email</th>
@@ -60,7 +70,7 @@
                             <th>Địa chỉ</th>
                             <th>SDT</th>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>abc@gmail.com</td>
                             <td>Ngon ngon ngon</td>
@@ -68,7 +78,7 @@
                             <td>Thủ Đức</td>
                             <td>0123456789</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>2</td>
                             <td>abc@gmail.com</td>
                             <td>Măm măm</td>
@@ -76,7 +86,7 @@
                             <td>Tân Phú</td>
                             <td>0123456789</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>3</td>
                             <td>abc@gmail.com</td>
                             <td>Hoằng Đạt</td>
@@ -84,7 +94,7 @@
                             <td>Thủ Đức</td>
                             <td>0123456789</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>4</td>
                             <td>abc@gmail.com</td>
                             <td>Hằng Thiện</td>
@@ -92,7 +102,7 @@
                             <td>Thủ Đức</td>
                             <td>0123456789</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>4</td>
                             <td>abc@gmail.com</td>
                             <td>Hằng Thiện</td>
@@ -100,7 +110,7 @@
                             <td>Thủ Đức</td>
                             <td>0123456789</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>4</td>
                             <td>abc@gmail.com</td>
                             <td>Hằng Thiện</td>
@@ -110,172 +120,7 @@
                         </tr>
                     </table>
 
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <label for="madoitac">Mã đối tác:</label>
-                    <input type="text" name="madoitac" id="madoitac" placeholder="Nhập mã đối tác" />
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
-                        Xem thực đơn
-                    </button>
-                    <br>
-                    <!-- Modal -->
-                    <div class="modal" id="exampleModal2">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h2 class="modal-title">Đặt hàng</h2>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <h3>Thực đơn</h3>
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Mã đối tác</th>
-                                                <th>Mã món</th>
-                                                <th>Tên món</th>
-                                                <th>Miêu tả</th>
-                                                <th>Giá</th>
-                                                <th>Tình trạng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>1</td>
-                                                <td>Cơm gà</td>
-                                                <td>Chua mặn ngọt</td>
-                                                <td>30000</td>
-                                                <td>Còn bán</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <form action="#" id="khachhangthemmon">
-                                        <h3>Chọn món</h3>
-                                        <label for="mamonan">Mã món ăn:</label>
-                                        <input type="text" name="mamonan" id="mamonan" placeholder="Nhập mã món ăn" />
-                                        <label for="soluongmonan">Số lượng:</label>
-                                        <input type="text" name="soluongmonan" id="soluongmonan"
-                                            placeholder="Nhập số lượng" />
-                                        <br>
-                                        <br>
-                                        <label for="tuychonmonan">Tuỳ chọn:</label>
-                                        <input type="text" name="tuychonmonan" id="tuychonmonan"
-                                            placeholder="Nhập tuỳ chọn món ăn" />
-                                        <button type="submit" class="btn btn-primary">Thêm</button>
-                                    </form>
-                                    <br>
-                                    <form action="#" id="khachhangthemthongtin">
-                                        <h3>Thông tin giao hàng</h3>
-                                        <label for="sdtkhachhang">SDT:</label>
-                                        <input type="text" name="sdtkhachhang" id="sdtkhachhang"
-                                            placeholder="Nhập SDT giao" />
-                                        <label for="diachigiaohang">Địa chỉ:</label>
-                                        <input type="text" name="diachigiaohang" id="diachigiaohang"
-                                            placeholder="Nhập địa chỉ giao" />
-                                        <button type="submit" class="btn btn-primary">Thêm</button>
-                                    </form>
-                                    <br>
-                                    <h3>Thành tiền</h3>
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Mã đơn hàng</th>
-                                                <th>Ngày lập</th>
-                                                <th>Tổng số lượng</th>
-                                                <th>Phí vận chuyển</th>
-                                                <th>Thành tiền</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>2022-11-11</td>
-                                                <td>3</td>
-                                                <td>30000</td>
-                                                <td>530000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Xác nhận</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>

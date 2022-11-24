@@ -11,7 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="quanLyTaiKhoan.js" defer></script>
+    <script src="validate.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -43,14 +46,24 @@
             <div class="clearfix"></div>
         </div>
     </nav>
-
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách tài khoản</h2>
-                    <table class='table table-bordered table-condensed table-striped table-hover'>
+                    <br>
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="mataikhoan">Mã tài khoản:</label>
+                        <input class="inputNhap" type="text" name="mataikhoan" id="mataikhoan" placeholder="Nhập mã tài khoản" />
+                        <button type="submit" id="khoataikhoan" class="btn-modal">Khoá</button> 
+                        <button type="submit" id="kichhoattaikhoan" class="btn-modal">Kích hoạt</button>
+                    </form>
+                    <br>
+                    <button type="submit" id="themtaikhoan" class="btn-modal">Thêm tài khoản nhân viên</button>
+                    <br>
+                    <br>
+                    <table class='table'>
                         <tr>
                             <th>Mã tài khoản</th>
                             <th>Tên đăng nhập</th>
@@ -58,209 +71,86 @@
                             <th>Loại tài khoản</th>
                             <th>Trạng thái</th>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>abc123</td>
                             <td>123456</td>
                             <td>Admin</td>
                             <td>Đã kích hoạt</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
-                            <td>1</td>
-                            <td>abc123</td>
-                            <td>123456</td>
-                            <td>Đối tác</td>
-                            <td>Đã kích hoạt</td>
-                        </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
-                            <td>1</td>
-                            <td>abc123</td>
-                            <td>123456</td>
-                            <td>Đối tác</td>
-                            <td>Đã kích hoạt</td>
-                        </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>abc123</td>
                             <td>123456</td>
                             <td>Nhân viên</td>
                             <td>Đã kích hoạt</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>abc123</td>
                             <td>123456</td>
                             <td>Khách hàng</td>
                             <td>Đã kích hoạt</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
                             <td>1</td>
                             <td>abc123</td>
                             <td>123456</td>
                             <td>Khách hàng</td>
                             <td>Đã kích hoạt</td>
                         </tr>
-                        <tr class="table-row" data-href="#exampleModal" data-toggle="modal" data-target="#exampleModal">
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Đối tác</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
+                        <tr class="table-row">
                             <td>1</td>
                             <td>abc123</td>
                             <td>123456</td>
                             <td>Tài xế</td>
                             <td>Đã kích hoạt</td>
                         </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc123</td>
+                            <td>123456</td>
+                            <td>Khách hàng</td>
+                            <td>Đã kích hoạt</td>
+                        </tr>
                     </table>
+                    <!-- Thêm tài khoản -->
                     <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <!-- Them tai khoản -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#themtaikhoan">
-                        Thêm
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="themtaikhoan" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                    <div id="Model-themtaikhoan" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" name="add-account" action="#">
                                 <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Thêm tài khoản</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h2 class="modal-title">Thêm tài khoản nhân viên</h2>
+                                    <span class="close">&times;</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="tendangnhap">Tên đăng nhập:</label>
-                                            <br>
-                                            <input type="text" name="tendangnhap" id="tendangnhap"
-                                                placeholder="Nhập tên đăng nhập" />
-                                            <br>
-                                            <label for="matkhau">Mật khẩu:</label>
-                                            <br>
-                                            <input type="password" name="matkhau" id="matkhau"
-                                                placeholder="Nhập mật khẩu" />
-                                            <br>
-                                            <label for="xacnhanmatkhau">Xác nhận mật khẩu:</label>
-                                            <br>
-                                            <input type="password" name="xacnhanmatkhau" id="xacnhanmatkhau"
-                                                placeholder="Nhập lại mật khẩu" />
-                                            <br>
-                                            <label for="loaitaikhoan">Loại tài khoản:</label>
-                                            <br>
-                                            <select class="form-select form-select-sm"
-                                                aria-label=".form-select-sm example">
-                                                <option value="tkadmin">Admin</option>
-                                                <option value="tknhanvien">Nhân viên</option>
-                                            </select>
-                                        </form>
-                                    </div>
+                                    <label for="tendangnhap">Tên đăng nhập:</label>
+                                        <br>
+                                        <input type="text" name="tendangnhap" id="tendangnhap"
+                                            placeholder="Nhập tên đăng nhập" />
+                                        <br>
+                                        <label for="matkhau">Mật khẩu:</label>
+                                        <br>
+                                        <input type="password" name="matkhau" id="matkhau"
+                                            placeholder="Nhập mật khẩu" />
+                                        <br>
+                                        <label for="xacnhanmatkhau">Xác nhận mật khẩu:</label>
+                                        <br>
+                                        <input type="password" name="xacnhanmatkhau" id="xacnhanmatkhau"
+                                            placeholder="Nhập lại mật khẩu" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Thêm</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order">Thêm</button>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Xoa tai khoản -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#xoataikhoan">
-                        Xoá
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="xoataikhoan" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Xoá tài khoản</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="mataikhoan">Mã tài khoản:</label>
-                                            <br>
-                                            <input type="text" name="mataikhoan" id="mataikhoan"
-                                                placeholder="Nhập mã tài khoản" />
-                                            <br>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Xoá</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- khoa tai khoản -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#khoataikhoan">
-                        Khoá
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="khoataikhoan" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Khoá tài khoản</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="mataikhoan">Mã tài khoản:</label>
-                                            <br>
-                                            <input type="text" name="mataikhoan" id="mataikhoan"
-                                                placeholder="Nhập mã tài khoản" />
-                                            <br>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Khoá</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- kich hoat tai khoản -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#kichhoattaikhoan">
-                        Kích hoạt
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="kichhoattaikhoan" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Kích hoạt tài khoản</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="mataikhoan">Mã tài khoản:</label>
-                                            <br>
-                                            <input type="text" name="mataikhoan" id="mataikhoan"
-                                                placeholder="Nhập mã tài khoản" />
-                                            <br>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Kích hoạt</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

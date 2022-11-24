@@ -13,9 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="thongTinNhanVien.js" defer></script>
-    <script src="doiMatKhau.js" defer></script>
     <script src="validate.js" defer></script>
+    <script src="nhanVienThongKe.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -53,78 +52,30 @@
     <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <h2>Thông tin nhân viên</h2>
-                    <table class='table'>
-                        <tr>
-                            <th>Mã nhân viên</th>
-                            <th>Họ tên</th>
-                        </tr>
-                        <tr class="table-row">
-                            <td>1</td>
-                            <td>Nguyễn Văn B</td>
-                        </tr>
-                    </table>
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button id="fix-inf" class="btn-modal">Chỉnh sửa</button>
-
-                    <!-- Modal -->
-                    <div id="Model-fix-inf" class="modal">
-                        <div class="modal-content">
-                            <form class="inputModal" action="#" name="add-product">
-                                <div class="modal-header">
-                                    <h2 class="modal-title">Thông tin cá nhân</h2>
-                                    <span class="close">&times;</span>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="hoten">Họ tên:</label>
-                                    <br>
-                                    <input type="text" name="hoten" id="hoten"
-                                        placeholder="Nhập họ tên" />
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
-                                        đổi</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Đổi mật khẩu -->
-                    <button id="fix-password" class="btn-modal">Đổi mật khẩu</button>
-                    <!-- Modal -->
-                    <div id="Model-fix-password" class="modal">
-                        <div class="modal-content">
-                            <form class="inputModal" name="fix-pass" action="#">
-                                <div class="modal-header">
-                                    <h2 class="modal-title">Đổi mật khẩu</h2>
-                                    <span class="close2">&times;</span>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="matkhau">Mật khẩu hiện tại:</label>
-                                    <br>
-                                    <input type="password" name="matkhau" id="matkhau"
-                                        placeholder="Nhập mật khẩu hiện tại" />
-                                    <br>
-                                    <label for="matkhaumoi">Mật khẩu mới:</label>
-                                    <br>
-                                    <input type="password" name="matkhaumoi" id="matkhaumoi"
-                                        placeholder="Nhập mật khẩu" />
-                                    <br>
-                                    <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
-                                    <br>
-                                    <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
-                                        placeholder="Nhập lại mật khẩu" />
-                                    <br>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <div class="col-12 products">
+                    <h2>Thống kê thu nhập theo ngày</h2>
+                    <br>
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="doanhthungay">Nhập ngày:</label>
+                        <input class="inputNhap" type="date" name="doanhthungay" id="doanhthungay">
+                        <button type="submit" id="xemdoanhthungay" class="btn-modal">Xem doanh thu</button> 
+                    </form>
+                    <br> <br>
+                    <!-- hien thi ket qua doanh thu o day -->
+                    <table id="table1"></table>
+                    <!--  -->
+                    <br>
+                    <hr>
+                    <h2>Thống kê thu nhập theo tháng</h2>
+                    <br>
+                    <form action="#" name="thongKeThang">
+                        <label for="doanhthuthang">Nhập tháng:</label>
+                        <input type="month" name="doanhthuthang" id="doanhthuthang">
+                        <button type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
+                    </form>
+                    <br> <br>
+                    <!-- hien thi ket qua doanh thu o day -->
+                    <table id="table2"></table>
                 </div>
             </div>
         </div>

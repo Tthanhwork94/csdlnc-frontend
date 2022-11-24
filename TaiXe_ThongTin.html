@@ -12,6 +12,10 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="thongTinKhachHang.js" defer></script>
+    <script src="doiMatKhau.js" defer></script>
+    <script src="validate.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -29,8 +33,8 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="TaiXe_Home.html">Trang chủ</a></li>
-                    <li><a href="TaiXe_XemDonHang.html">Xem đơn hàng</a></li>
-                    <li><a href="TaiXe_DangGiao.html">Đang giao</a></li>
+                    <li><a href="TaiXe_NhanDon.html">Nhận đơn</a></li>
+                    <li><a href="TaiXe_DonCuaToi.html">Đơn của tôi</a></li>
                     <li><a href="TaiXe_ThongKe.html">Thống kê</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
@@ -47,7 +51,7 @@
     </nav>
 
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -78,115 +82,98 @@
                     </table>
                     <!-- Modal -->
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Chỉnh sửa
-                    </button>
+                    <button id="fix-inf" class="btn-modal">Chỉnh sửa</button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                    <div id="Model-fix-inf" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" action="#" name="add-product">
                                 <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Chỉnh sửa thông tin khách hàng</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h2 class="modal-title">Thông tin cá nhân</h2>
+                                    <span class="close">&times;</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="hotenkhachhang">Họ tên:</label>
-                                            <br>
-                                            <input type="text" name="hotenkhachhang" id="hotenkhachhang"
-                                                placeholder="Nhập họ tên" />
-                                            <br>
-                                            <label for="cmnd">CMND:</label>
-                                            <br>
-                                            <input type="text" name="cmnd" id="cmnd" placeholder="Nhập CMND" />
-                                            <br>
-                                            <label for="sdtkhachhang">SDT:</label>
-                                            <br>
-                                            <input type="text" name="sdtkhachhang" id="sdtkhachhang"
-                                                placeholder="Nhập SDT" />
-                                            <br>
-                                            <label for="diachikhachhang">Địa chỉ:</label>
-                                            <br>
-                                            <input type="text" name="diachikhachhang" id="diachikhachhang"
-                                                placeholder="Nhập địa chỉ" />
-                                            <br>
-                                            <label for="biensoxe">Biển số xe:</label>
-                                            <br>
-                                            <input type="text" name="biensoxe" id="biensoxe"
-                                                placeholder="Nhập biển số xe" />
-                                            <br>
-                                            <label for="kvhoatdong">KV hoạt động:</label>
-                                            <br>
-                                            <input type="text" name="kvhoatdong" id="kvhoatdong"
-                                                placeholder="Nhập khu vực hoạt động" />
-                                            <br>
-                                            <label for="emailkhachhang">Email:</label>
-                                            <br>
-                                            <input type="email" name="emailkhachhang" id="emailkhachhang"
-                                                placeholder="Nhập email" />
-                                            <br>
-                                            <label for="stk">STK:</label>
-                                            <br>
-                                            <input type="text" name="stk" id="stk" placeholder="Nhập STK" />
-                                            <br>
-                                        </form>
-                                    </div>
+                                    <label for="hoten">Họ tên:</label>
+                                    <br>
+                                    <input type="text" name="hoten" id="hoten"
+                                        placeholder="Nhập họ tên" />
+                                    <br>
+                                    <label for="cmnd">CMND</label>
+                                    <br>
+                                    <input type="text" name="cmnd" id="cmnd"
+                                        placeholder="Nhập CMND" />
+                                    <br>
+                                    <label for="sdt">Số điện thoại:</label>
+                                    <br>
+                                    <input type="text" name="sdt" id="sdt"
+                                        placeholder="Nhập số điện thoại" />
+                                    <br>
+                                    <label for="diachi">Địa chỉ:</label>
+                                    <br>
+                                    <input type="text" name="diachi" id="diachi"
+                                        placeholder="Nhập địa chỉ" />
+                                    <br>
+                                    <label for="biensoxe">Biển số xe:</label>
+                                    <br>
+                                    <input type="text" name="biensoxe" id="biensoxe"
+                                        placeholder="Nhập biển số xe" />
+                                    <br>
+                                    <label for="khuvuc">Khu vực hoạt động:</label>
+                                    <br>
+                                    <input type="text" name="khuvuc" id="khuvuc"
+                                        placeholder="Nhập khu vực hoạt động" />
+                                    <br>
+                                    <label for="email">Email:</label>
+                                    <br>
+                                    <input type="email" name="email" id="email"
+                                        placeholder="Nhập email" />
+                                    <br>
+                                    <label for="stk">STK:</label>
+                                    <br>
+                                    <input type="text" name="stk" id="stk"
+                                        placeholder="Nhập STK" />
+                                    <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
+                                        đổi</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     <!-- Đổi mật khẩu -->
+                    <button id="fix-password" class="btn-modal">Đổi mật khẩu</button>
                     <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doimatkhau">
-                        Đổi mật khẩu
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="doimatkhau" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
+                    <div id="Model-fix-password" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" name="fix-pass" action="#">
                                 <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Đổi mật khẩu</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h2 class="modal-title">Đổi mật khẩu</h2>
+                                    <span class="close2">&times;</span>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="matkhau">Mật khẩu hiện tại:</label>
-                                            <br>
-                                            <input type="text" name="matkhau" id="matkhau"
-                                                placeholder="Nhập mật khẩu hiện tại" />
-                                            <br>
-                                            <label for="matkhaumoi">Mật khẩu mới:</label>
-                                            <br>
-                                            <input type="password" name="matkhaumoi" id="matkhaumoi"
-                                                placeholder="Nhập mật khẩu" />
-                                            <br>
-                                            <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
-                                            <br>
-                                            <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
-                                                placeholder="Nhập lại mật khẩu" />
-                                            <br>
-                                        </form>
-                                    </div>
+                                    <label for="matkhau">Mật khẩu hiện tại:</label>
+                                    <br>
+                                    <input type="password" name="matkhau" id="matkhau"
+                                        placeholder="Nhập mật khẩu hiện tại" />
+                                    <br>
+                                    <label for="matkhaumoi">Mật khẩu mới:</label>
+                                    <br>
+                                    <input type="password" name="matkhaumoi" id="matkhaumoi"
+                                        placeholder="Nhập mật khẩu" />
+                                    <br>
+                                    <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
+                                    <br>
+                                    <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
+                                        placeholder="Nhập lại mật khẩu" />
+                                    <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -194,7 +181,7 @@
         </div>
     </div>
     <!-- Footer -->
-    <div class="footer navbar-fixed-bottom">
+    <div class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">

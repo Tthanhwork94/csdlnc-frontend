@@ -12,6 +12,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="dangKy.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -41,48 +43,35 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="center-left-dangnhap">
-                        <img src="images/17372 [Converted] 1.png" alt="">
+                        <img class="img-thumbnail" src="images/17372 [Converted] 1.png" alt="">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="center-right-dangky">
-                        <form class="dangky">
+                        <form class="dangky" name="dangky" action="#">
                             <h1>Đăng ký</h1>
                             <br> <br>
-                            <label for="inputEmail4" class="form-label">Tên đăng nhập:</label>
-                            <input type="email" class="form-control" id="inputEmail4"
+                            <label for="tendangnhap" class="form-label">Tên đăng nhập:</label>
+                            <input type="text" class="form-control" id="tendangnhap" name="tendangnhap"
                                 placeholder="Nhập tên đăng nhập ở đây">
                             <br>
-                            <label for="inputPassword4" class="form-label">Mật khẩu:</label>
-                            <input type="password" class="form-control" id="inputPassword4"
+                            <label for="matkhau" class="form-label">Mật khẩu:</label>
+                            <input type="password" class="form-control" id="matkhau" name="matkhau"
                                 placeholder="Nhập mật khẩu ở đây">
                             <br>
-                            <label for="inputPassword4" class="form-label">Xác nhận mật khẩu:</label>
-                            <input type="password" class="form-control" id="inputPassword4"
+                            <label for="xacnhanmatkhau" class="form-label">Xác nhận mật khẩu:</label>
+                            <input type="password" class="form-control" id="xacnhanmatkhau" name="xacnhanmatkhau"
                                 placeholder="Nhập xác nhận mật khẩu ở đây">
                             <br>
-                            <label for="inputType4" class="form-label">Loại tài khoản:</label>
+                            <label for="loaitaikhoan" class="form-label">Loại tài khoản:</label>
                             <br>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="doitac"
-                                value="doitac">
-                            <label class="form-check-label" for="toitac" value="doitac">
-                                Đối tác
-                            </label>
+                            <select name="loaitaikhoan" id="loaitaikhoan" class="form-control" required="required">
+                                <option value="doitac">Đối tác</option>
+                                <option value="khachhang">Khách hàng</option>
+                                <option value="taixe">Tài xế</option>
+                            </select>
                             <br>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="khachhang"
-                                value="khachhang">
-                            <label class="form-check-label" for="khachhang" value="khachhang">
-                                Khách hàng
-                            </label>
-                            <br>
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="taixe"
-                                value="taixe">
-                            <label class="form-check-label" for="taixe" value="taixe">
-                                Tài xế
-                            </label>
-                            <br>
-                            <br>
-                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                            <button type="submit" id="dangky" class="btn btn-primary">Đăng ký</button>
                         </form>
                     </div>
                 </div>

@@ -31,7 +31,12 @@ $(function() {
         tenquan: "required",
         donhangdukien: "required",
         loaiamthuc: "required",
-        sdt: "required"
+        sdt: "required",
+        madoitac: "required",
+        cmnd: "required",
+        biensoxe: "required",
+        khuvuc: "required",
+        mahopdong: "required"
       },
       messages: {
         tensanpham: "Hãy nhập tên sản phẩm",
@@ -63,7 +68,12 @@ $(function() {
         tenquan: "Hãy nhập tên quán",
         donhangdukien: "Hãy nhập đơn hàng dự kiến",
         loaiamthuc: "Hãy nhập loại ẩm thực",
-        sdt: "Hãy nhập số điện thoại"
+        sdt: "Hãy nhập số điện thoại",
+        madoitac: "Hãy nhập mã đối tác",
+        cmnd: "Hãy nhập CMND",
+        biensoxe: "Hãy nhập biển số xe",
+        khuvuc: "Hãy nhập khu vực hoạt động",
+        mahopdong: "Hãy nhập mã hợp đồng"
       },
       submitHandler: function(form) {
         form.submit();

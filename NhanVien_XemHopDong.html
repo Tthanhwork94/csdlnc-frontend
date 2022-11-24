@@ -12,6 +12,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="validate.js" defer></script>
+    <script src="duyetHopDong.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -43,22 +46,58 @@
             </div>
             <div class="clearfix"></div>
         </div>
+        <!-- Modal -->
+        <div id="model-chitietsanpham" class="modal">
+            <div class="modal-content">
+                <!-- 2 form co name trung nhau -->
+                <form action="#" name="fix-product"> 
+                    <div class="modal-header">
+                        <h2 class="modal-title">Gia hạn hợp đồng</h2>
+                        <span class="close">&times;</span>
+                    </div>
+
+                    <div class="modal-body inputModal">
+                        <label for="hoahong">Phần trăm hoa hồng:</label>
+                        <br>
+                        <input type="text" name="hoahong" id="hoahong"
+                            placeholder="Phần trăm hoa hồng" />
+                        <br>
+                        <label for="ngayhethan">Ngày hết hạn:</label>
+                        <br>
+                        <input type="date" name="ngayhethan" id="ngayhethan" placeholder="Ngày hết hạn" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
+                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
     </nav>
 
     <!-- Center-->
-    <div class="center-doitacthemhopdong" class="container-fluid">
+    <div class="center-content" class="container-fluid">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2>Danh sách hợp đồng</h2>
+                    <br>
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="mahopdong" id="lbmahopdong">Mã hợp đồng:</label>
+                        <input class="inputNhap" type="text" name="mahopdong" id="mahopdong"
+                            placeholder="Nhập mã hợp đồng" />
+                        <button type="submit" id="duyethopdong" class="btn-modal">Duyệt</button>
+                        <button type="submit" id="giahanhopdong" class="btn-modal">Gia hạn</button>
+                    </form>
+                    <br>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">STT</th>
                                 <th scope="col">Mã hợp đồng</th>
                                 <th scope="col">Ngày lập</th>
                                 <th scope="col">Ngày hết hạn</th>
                                 <th scope="col">Người đại diện</th>
+                                <th scope="col">SDT</th>
                                 <th scope="col">STK</th>
                                 <th scope="col">Ngân hàng</th>
                                 <th scope="col">Số chi nhánh</th>
@@ -67,66 +106,66 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
                                 <td>1</td>
                                 <td>2022-11-10</td>
                                 <td>20225-11-10</td>
                                 <td>Nguyễn Văn A</td>
                                 <td>0123456789</td>
-                                <td>MB Bank</td>
-                                <td>5</td>
-                                <td>Chưa duyệt</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>3</td>
-                                <td>2022-11-10</td>
-                                <td>20225-11-10</td>
-                                <td>Nguyễn Văn A</td>
                                 <td>0123456789</td>
                                 <td>MB Bank</td>
                                 <td>5</td>
                                 <td>Chưa duyệt</td>
                             </tr>
                             <tr>
-                                <th scope="row">3</th>
                                 <td>3</td>
                                 <td>2022-11-10</td>
                                 <td>20225-11-10</td>
                                 <td>Nguyễn Văn A</td>
+                                <td>0123456789</td>
                                 <td>0123456789</td>
                                 <td>MB Bank</td>
                                 <td>5</td>
                                 <td>Chưa duyệt</td>
                             </tr>
                             <tr>
-                                <th scope="row">4</th>
+                                <td>3</td>
+                                <td>2022-11-10</td>
+                                <td>20225-11-10</td>
+                                <td>Nguyễn Văn A</td>
+                                <td>0123456789</td>
+                                <td>0123456789</td>
+                                <td>MB Bank</td>
+                                <td>5</td>
+                                <td>Chưa duyệt</td>
+                            </tr>
+                            <tr>
                                 <td>4</td>
                                 <td>2022-11-10</td>
                                 <td>20225-11-10</td>
                                 <td>Nguyễn Văn A</td>
                                 <td>0123456789</td>
-                                <td>MB Bank</td>
-                                <td>5</td>
-                                <td>Chưa duyệt</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>5</td>
-                                <td>2022-11-10</td>
-                                <td>20225-11-10</td>
-                                <td>Nguyễn Văn A</td>
                                 <td>0123456789</td>
                                 <td>MB Bank</td>
                                 <td>5</td>
                                 <td>Chưa duyệt</td>
                             </tr>
                             <tr>
-                                <th scope="row">6</th>
+                                <td>5</td>
+                                <td>2022-11-10</td>
+                                <td>20225-11-10</td>
+                                <td>Nguyễn Văn A</td>
+                                <td>0123456789</td>
+                                <td>0123456789</td>
+                                <td>MB Bank</td>
+                                <td>5</td>
+                                <td>Chưa duyệt</td>
+                            </tr>
+                            <tr>
                                 <td>6</td>
                                 <td>2022-11-10</td>
                                 <td>20225-11-10</td>
                                 <td>Nguyễn Văn A</td>
+                                <td>0123456789</td>
                                 <td>0123456789</td>
                                 <td>MB Bank</td>
                                 <td>5</td>
@@ -134,84 +173,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Duyệt hợp đồng
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Hợp đồng</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="mahopdong">Mã hợp đồng:</label>
-                                            <br>
-                                            <input type="text" name="mahopdong" id="mahopdong"
-                                                placeholder="Nhập mã hợp đồng" />
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Duyệt hợp đồng</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- gia han hop dong -->
-                    <!-- Modal -->
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
-                        Gia hạn hợp đồng
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title" id="exampleModalLabel">Gia hạn Hợp đồng</h2>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <form class="formthem" action="#">
-                                            <label for="mahopdong">Mã hợp đồng:</label>
-                                            <br>
-                                            <input type="text" name="mahopdong" id="mahopdong"
-                                                placeholder="Nhập mã hợp đồng" />
-                                            <br>
-                                            <label for="hoahong">Phần trăm hoa hồng:</label>
-                                            <br>
-                                            <input type="text" name="hoahong" id="hoahong"
-                                                placeholder="Phần trăm hoa hồng" />
-                                            <br>
-                                            <label for="hieuluc">Ngày hết hạn:</label>
-                                            <br>
-                                            <input type="text" name="hieuluc" id="hieuluc" placeholder="Ngày hết hạn" />
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Gia hạn</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

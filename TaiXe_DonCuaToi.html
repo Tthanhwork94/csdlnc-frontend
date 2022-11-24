@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Food Delivery|Khach hang</title>
+    <title>Food Delivery | Tai xe</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="danhSachDonHang.js" defer></script>
     <script src="validate.js" defer></script>
+    <script src="giaoDonHang.js" defer></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -31,13 +32,14 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
-                    <li><a href="KhachHang_DatHang.html">Đặt hàng</a></li>
-                    <li><a href="KhachHang_XemDonHang.html">Xem đơn hàng</a></li>
+                    <li><a href="TaiXe_Home.html">Trang chủ</a></li>
+                    <li><a href="TaiXe_NhanDon.html">Nhận đơn</a></li>
+                    <li><a href="TaiXe_DonCuaToi.html">Đơn của tôi</a></li>
+                    <li><a href="TaiXe_ThongKe.html">Thống kê</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
+                            <li><a href="TaiXe_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
                                     xuất</a></li>
                         </ul>
@@ -101,14 +103,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2>Danh sách đơn hàng</h2>
+                    <h2>Danh sách đơn hàng của tôi</h2>
                     <br>
                     <form action="#" name="add-product">
                         <label class="labelNhap" for="madonhang" id="lbmadonhang">Mã đơn hàng:</label>
                         <input class="inputNhap" type="text" name="madonhang" id="madonhang"
                             placeholder="Nhập mã đơn hàng" />
                         <button type="submit" id="chitietdonhang" class="btn-modal">Chi tiết</button>
-                        <button type="submit" id="huydonhang" class="btn-modal">Huỷ đơn</button>
+                        <button type="submit" id="dagiao" class="btn-modal">Đã giao</button>
                     </form>
                     <br>
                     <table class='table'>
@@ -117,199 +119,168 @@
                             <th>Ngày lập</th>
                             <th>SDT khách hàng</th>
                             <th>Địa chỉ giao</th>
-                            <th>Trạng thái</th>
-                            <th>Tổng số lượng</th>
                             <th>Phí giao hàng</th>
                             <th>Thành tiền</th>
                             <th>Mã chi nhánh</th>
-                            <th>Mã tài xế</th>
-                            <th>Mã khách hàng</th>
+                            <th>Địa chỉ chi nhánh</th>
+                            <th>Tình trạng</th>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
-                            <td>Đã giao</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
                             <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
+                            <td>Đang giao</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
-                            <td>Đã giao</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
                             <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
+                            <td>Đang giao</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
                         <tr class="table-row">
                             <td>1</td>
                             <td>2022-11-10</td>
                             <td>0123456789</td>
-                            <td>Linh Trung - Thủ Đức</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
                             <td>Đã giao</td>
-                            <td>2</td>
-                            <td>30000</td>
-                            <td>100000</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>2</td>
                         </tr>
-            
-                    </table>
 
+                    </table>
                 </div>
             </div>
         </div>
