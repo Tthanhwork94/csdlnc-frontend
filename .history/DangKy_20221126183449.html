@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="dangKy.js" defer></script>
-    <script src="/function.js"></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -49,7 +48,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="center-right-dangky">
-                        <form class="dangky" name="dangky" >
+                        <form class="dangky" name="dangky" action="#">
                             <h1>Đăng ký</h1>
                             <br> <br>
                             <label for="tendangnhap" class="form-label">Tên đăng nhập:</label>
@@ -72,7 +71,7 @@
                                 <option value="taixe">Tài xế</option>
                             </select>
                             <br>
-                            <a onclick="DangKy()" id="dangky" class="btn btn-primary">Đăng ký</a>
+                            <button onclick="DangKy()" id="dangky" class="btn btn-primary">Đăng ký</button>
                         </form>
                     </div>
                 </div>
@@ -130,48 +129,25 @@
     </div>
 
     <script>
-        getInforAccount("nguyenkhactan");
         function DangKy(){
-            let username= document.getElementById("tendangnhap");
-            let password=document.getElementById("matkhau");
-            let confirmpwd=document.getElementById("xacnhanmatkhau");
-            var typeaccount=document.getElementById("loaitaikhoan");
-            // alert(username+password+typeaccount);
-            let account = {
-                tendangnhap:username.value,
-                matkhau:password.value,
-                loaitaikhoan:typeaccount.value
-            }
-            $.ajax({
-            url: "http://localhost:8080/api/register",
-            type: 'POST',
-            contentType : "application/json",
-            headers: {
-                    "accept": "application/json",
-                    "Access-Control-Allow-Origin":"*"
-                },
-            dataType: 'json',
-            data:JSON.stringify(account),
-            success: function(data){
-                window.localStorage.setItem('account', account)
-                alert(username.value+" đã đăng ký thành công");
-                username.value='';
-                password.value='';
-                confirmpwd.value='';
+            // $.ajax({
+            // url: "localhost:8080/api/taikhoan",
+            // type: 'GET',
+            // success: function(res) {
+            //     console.log(res);
+            //     alert(res);
+            // }
+            // });
 
-                setTimeout(function() {
-                 window.location.href = "/"+account.loaitaikhoan+"_home.html";
-                }, 500);
-            },
-            error: function(data){
-                alert(username.value+" đã tồn tại");
-                username.value='';
-                password.value='';
-                confirmpwd.value=''
-            }
-        });
-        
-    }
+            // fetch("localhost:8080/api/taikhoan/Eliana")
+            //     .then(function(res){
+            //         return res.json;
+            //     })
+            //     .then(function(taikhoan){
+            //         alert(taikhoan.tendangnhap);
+            //     })
+            alert("Asdfsaf");
+        }
     </script>
 </body>
 
