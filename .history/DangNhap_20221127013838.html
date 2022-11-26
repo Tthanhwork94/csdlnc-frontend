@@ -136,13 +136,12 @@
             dataType: 'json',
             data:JSON.stringify(account),
             success: function(data){
-                
-                setAccountLocal(account.tendangnhap);
+                setAccountLocal(account.tendangnhap)
                 alert(username.value+" đã đăng nhập thành công");
                 username.value='';
                 password.value='';
                 setTimeout(function() {
-                  let user = JSON.parse(window.localStorage.getItem('account'))
+                  let user = window.localStorage.getItem('account')
                    window.location.href = "/"+user.loaitaikhoan+"_home.html";
                 }, 500);
             },

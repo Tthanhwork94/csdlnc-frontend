@@ -2,7 +2,13 @@ function setAccountLocal(username){
     $.ajax({
         url: "http://localhost:8080/api/taikhoan/"+username,
         type: 'GET',
+        // contentType : "application/json",
+        // headers: {
+        //         "accept": "application/json",
+        //         "Access-Control-Allow-Origin":"*"
+        //     },
         dataType: 'json',
+        // data:JSON.stringify(account),
         success: function(data){
             window.localStorage.setItem('account', JSON.stringify(data));
         },
@@ -12,10 +18,3 @@ function setAccountLocal(username){
     });
 }
 
-function logout(){
-    window.localStorage.removeItem("username");
-    window.localStorage.removeItem("account");
-    // setTimeout(function() {
-    //     window.location.href = "/index.html";
-    //    }, 100);
-}

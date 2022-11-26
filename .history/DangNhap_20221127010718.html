@@ -14,7 +14,6 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
   <script src="dangNhap.js" defer></script>
-  <script src="/function.js"></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -59,7 +58,7 @@
               <label for="matkhau" class="form-label">Mật khẩu:</label>
               <input type="password" class="form-control" id="matkhau" name="matkhau" placeholder="Nhập mật khẩu ở đây">
               <br>
-              <a onclick="DangNhap()" type="button" id="dangnhap" class="btn btn-primary">Đăng nhập</a>
+              <a type="button" id="dangnhap" class="btn btn-primary">Đăng nhập</a>
             </form>
           </div>
         </div>
@@ -120,13 +119,16 @@
     function DangNhap(){
             let username= document.getElementById("tendangnhap");
             let password=document.getElementById("matkhau");
+            let confirmpwd=document.getElementById("xacnhanmatkhau");
+            var typeaccount=document.getElementById("loaitaikhoan");
             // alert(username+password+typeaccount);
             let account = {
                 tendangnhap:username.value,
-                matkhau:password.value
+                matkhau:password.value,
+                loaitaikhoan:typeaccount.value
             }
             $.ajax({
-            url: "http://localhost:8080/api/login",
+            url: "http://localhost:8080/api/register",
             type: 'POST',
             contentType : "application/json",
             headers: {
@@ -136,20 +138,21 @@
             dataType: 'json',
             data:JSON.stringify(account),
             success: function(data){
-                
-                setAccountLocal(account.tendangnhap);
-                alert(username.value+" đã đăng nhập thành công");
+                window.localStorage.setItem('account', account)
+                alert(username.value+" đã đăng ký thành công");
                 username.value='';
                 password.value='';
+                confirmpwd.value='';
+
                 setTimeout(function() {
-                  let user = JSON.parse(window.localStorage.getItem('account'))
-                   window.location.href = "/"+user.loaitaikhoan+"_home.html";
+                 window.location.href = "/"+account.loaitaikhoan+"_home.html";
                 }, 500);
             },
             error: function(data){
-                alert(username.value+"sai tên đăng nhập hoặc mật khẩu");
+                alert(username.value+" đã tồn tại");
                 username.value='';
                 password.value='';
+                confirmpwd.value=''
             }
         });
         

@@ -150,7 +150,7 @@
     </div>
     <script>    
         function init(){
-            document.getElementById("account").innerHTML = JSON.parse(localStorage.getItem("account")).tendangnhap;
+            document.getElementById("account").innerHTML = window.localStorage.getItem("account").tendangnhap;
         }
         init();
     </script>

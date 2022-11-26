@@ -136,13 +136,15 @@
             dataType: 'json',
             data:JSON.stringify(account),
             success: function(data){
-                
-                setAccountLocal(account.tendangnhap);
+                // window.localStorage.setItem('account', account)
+                setAccountLocal(account.tendangnhap)
                 alert(username.value+" đã đăng nhập thành công");
                 username.value='';
                 password.value='';
+                confirmpwd.value='';
+
                 setTimeout(function() {
-                  let user = JSON.parse(window.localStorage.getItem('account'))
+                  let user = window.localStorage.getItem('account')
                    window.location.href = "/"+user.loaitaikhoan+"_home.html";
                 }, 500);
             },
@@ -150,6 +152,7 @@
                 alert(username.value+"sai tên đăng nhập hoặc mật khẩu");
                 username.value='';
                 password.value='';
+                confirmpwd.value=''
             }
         });
         

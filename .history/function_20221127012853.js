@@ -4,7 +4,7 @@ function setAccountLocal(username){
         type: 'GET',
         dataType: 'json',
         success: function(data){
-            window.localStorage.setItem('account', JSON.stringify(data));
+            window.localStorage.setItem('account', JSON.parse(JSON.stringify(data)));
         },
         error: function(data){
             alert("Không tìm thấy tài khoản.");

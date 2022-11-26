@@ -15,7 +15,5 @@ function setAccountLocal(username){
 function logout(){
     window.localStorage.removeItem("username");
     window.localStorage.removeItem("account");
-    // setTimeout(function() {
-    //     window.location.href = "/index.html";
-    //    }, 100);
+    
 }
