@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Food Delivery|Khach hang</title>
+    <title>Food Delivery | Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
@@ -12,7 +12,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="/function.js"></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -25,17 +24,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="KhachHang_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
-                    <li><a href="KhachHang_DatHang.html">Đặt hàng</a></li>
-                    <li><a href="KhachHang_XemDonHang.html">Xem đơn hàng</a></li>
+                    <li><a href="Admin_Home.html">Trang chủ</a></li>
+                    <li><a href="Admin_DanhSachTaiKhoan.html">Danh sách tài khoản</a></li>
                     <li class="dropdown">
-                        <a id = "account"  class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
+                            <li><a href="Admin_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
                                     xuất</a></li>
                         </ul>
@@ -54,7 +52,7 @@
                     <div class="banner-content-top">
                         <div class="center-left">
                             <h1>Chào mừng bạn đến với Foo</h1>
-                            <h2>Đây là phân hệ khách hàng</h2>
+                            <h2>Đây là phân hệ admin</h2>
                             <div class="content-text">
                                 <h1>Fast</h1>
                             </div>
@@ -67,9 +65,6 @@
                                 Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque
                                 laudantium
                             </p>
-                            <a href="KhachHang_DatHang.html">
-                                Đặt hàng ngay
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -130,12 +125,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function init(){
-            document.getElementById("account").innerHTML = JSON.parse(localStorage.getItem("account")).tendangnhap;
-        }
-        init();
-    </script>
 </body>
 
 </html>

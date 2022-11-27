@@ -152,8 +152,7 @@
             dataType: 'json',
             data:JSON.stringify(account),
             success: function(data){
-                setAccountLocal(account.tendangnhap);
-                // window.localStorage.setItem('account', account);
+                window.localStorage.setItem('account', account);
                 alert(username.value+" đã đăng ký thành công");
                 username.value='';
                 password.value='';

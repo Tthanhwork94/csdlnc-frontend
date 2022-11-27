@@ -12,7 +12,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="/function.js"></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -33,7 +32,7 @@
                     <li><a href="KhachHang_DatHang.html">Đặt hàng</a></li>
                     <li><a href="KhachHang_XemDonHang.html">Xem đơn hàng</a></li>
                     <li class="dropdown">
-                        <a id = "account"  class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
@@ -130,12 +129,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function init(){
-            document.getElementById("account").innerHTML = JSON.parse(localStorage.getItem("account")).tendangnhap;
-        }
-        init();
-    </script>
 </body>
 
 </html>
