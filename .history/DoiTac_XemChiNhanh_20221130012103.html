@@ -214,7 +214,7 @@
                                     <br>
                                     <select id="tinhtrangchinhanh" class="form-control"
                                         aria-label=".form-select-sm example">
-                                        <option value="bình thường">Bình thường</option>
+                                        <option value="bình thường ">Bình thường</option>
                                         <option value="tạm nghỉ">Tạm nghỉ</option>
                                     </select>
                                 </div>
@@ -253,20 +253,21 @@
                         tinhtrang:tinhtrang
                     };
             console.log(chinhanh);
-            axios.post("http://localhost:8080/api/doitac/chinhanh/update",chinhanh)
-            .then(function(response){
-                setTimeout(()=>{
-                close_model();                
-                },500);
-                getChinhanh()
-            }).error(function(error){
-                console.log(error);
-                setTimeout(()=>{
-                alert("chỉnh sửa không thành công");
-                close_model();                
-                },500);
-                getChinhanh()
-            })       
+            // axios.post("http://localhost:8080/api/doitac/menu/update",monan)
+            // .then(function(response){
+            //     setTimeout(()=>{
+            //     alert("đã chỉnh sửa món");
+            //     close_model();                
+            //     },500);
+            //     getMenu()
+            // }).error(function(error){
+            //     console.log(error);
+            //     setTimeout(()=>{
+            //     alert("chỉnh sửa không thành công");
+            //     close_model();                
+            //     },500);
+            //     getMenu()
+            // })       
         }
     </script>
 </body>

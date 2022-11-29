@@ -91,14 +91,14 @@
                             <label for="giodongcuachinhanh">Giờ đóng cửa:</label>
                             <input type="number" name="giodongcuachinhanh" id="giodongcuachinhanh">
 
-                            <label  for="tinhtrangchinhanh">Tình trạng:</label>
-                            <select id="tinhtrangchinhanh" class="form-control" aria-label=".form-select-sm example">
-                                <option value="bình thường">Bình thường</option>
-                                <option value="tạm nghỉ">Tạm nghỉ</option>
+                            <label for="tinhtrangchinhanh">Tình trạng:</label>
+                            <select class="form-control" aria-label=".form-select-sm example">
+                                <option value="binhthuong">Bình thường</option>
+                                <option value="tamnghi">Tạm nghỉ</option>
                             </select>
                             <br>
 
-                            <button onclick="inserMon()" type="button" id="themsp">Thêm</button>
+                            <button type="submit" id="themsp">Thêm</button>
 
                         </form>
                     </div>
@@ -158,25 +158,23 @@
     <script>
         init();
         function inserMon(){
-            var tenchinhanh =document.getElementById("tenchinhanh").value ;
-            var diachi =document.getElementById("diachichinhanh").value ;
-            var giomocua =document.getElementById("giomocuachinhanh").value ;
-            var giodongcua =document.getElementById("giodongcuachinhanh").value ;
-            let tinhtrang= $("#tinhtrangchinhanh :selected").text();
+            let tenmon= document.getElementById("tenmonan").value;
+            let mieuta= document.getElementById("mieutamonan").value;
+            let gia= document.getElementById("giamonan").value;
+            let tinhtrang= $("#tinhtrangmonan :selected").text();
             let madoitac = JSON.parse(window.localStorage.getItem("account")).mataikhoan;
             let chinhanh={
-                        tenchinhanh:tenchinhanh,
-                        diachi:diachi,
-                        giomocua:giomocua,
-                        giodongcua:giodongcua,
-                        tinhtrang:tinhtrang,
-                        madoitac:madoitac
+                        tenmon: tenmon,
+                        mieuta: mieuta,
+                        gia: gia,
+                        tinhtrang: tinhtrang,
+                        doitac:madoitac
                     }
-            console.log(chinhanh);
+            console.log(monan);
             axios.post("http://localhost:8080/api/doitac/chinhanh/insert",chinhanh)
             .then(function(response){
                 setTimeout(()=>{
-                     alert("đã thêm chi nhánh");                
+                     alert("đã thêm món");                
                 },500);
             }).error(function(error){
                 console.log(error);
@@ -184,7 +182,7 @@
                     alert("thêm không thành công");                
                 },500);
             })
-  
+           
         }
     </script>
 </body>

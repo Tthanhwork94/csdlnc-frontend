@@ -11,15 +11,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="xemChiNhanh.js" defer></script>
     <script src="validate.js" defer></script>
-    <script src="themChiNhanh.js" defer></script>
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body onload="getChinhanh()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -75,33 +76,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="form-add">
-                        <form action="#" name="add-product">
-                            <h2>Thêm chi nhánh</h2>
-                            <label for="tenchinhanh">Tên chi nhánh:</label>
-                            <input type="text" name="tenchinhanh" id="tenchinhanh" placeholder="Nhập tên chi nhánh" />
-
-                            <label for="diachichinhanh">Địa chỉ:</label>
-                            <input type="text" name="diachichinhanh" id="diachichinhanh"
-                                placeholder="Nhập địa chỉ chi nhánh" />
-
-                            <label for="giomocuachinhanh">Giờ mở cửa:</label>
-                            <input type="number" name="giomocuachinhanh" id="giomocuachinhanh">
-
-                            <label for="giodongcuachinhanh">Giờ đóng cửa:</label>
-                            <input type="number" name="giodongcuachinhanh" id="giodongcuachinhanh">
-
-                            <label  for="tinhtrangchinhanh">Tình trạng:</label>
-                            <select id="tinhtrangchinhanh" class="form-control" aria-label=".form-select-sm example">
-                                <option value="bình thường">Bình thường</option>
-                                <option value="tạm nghỉ">Tạm nghỉ</option>
-                            </select>
-                            <br>
-
-                            <button onclick="inserMon()" type="button" id="themsp">Thêm</button>
-
-                        </form>
-                    </div>
+                    <h2>Danh sách chi nhánh</h2>
+                    <br>
+                    <br>
+                    <table  id="table" class='table'>
+                       
+                    </table>
+                    <!-- Modal -->
+                    <div id="model-chitietsanpham" class="modal">
+                        
+                    </div> 
                 </div>
             </div>
         </div>
@@ -157,34 +141,132 @@
     </div>
     <script>
         init();
-        function inserMon(){
+
+        let rows = [];
+        async function getChinhanh(){
+            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+            try {
+                let data = await axios.get("http://localhost:8080/api/doitac/chinhanh/"+madoitac);
+                rows = data.data;
+                renderChinhanh(rows);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function renderChinhanh(data){
+            let thead = `<tr>
+                            <th>Mã chi nhánh</th>
+                            <th>Tên chi nhánh</th>
+                            <th>Địa chỉ</th>
+                            <th>Giờ mở cửa</th>
+                            <th>Giờ đóng cửa</th>
+                            <th>Tình trạng</th>
+                        </tr>`
+            let element = ``;
+            data.map( value => {
+                element+=`<tr class="table-row">
+                            <td><a onclick="chinhsuachinhanh(${value.machinhanh})" id="${value.machinhanh}">${value.machinhanh}</a></td>
+                            <td>${value.tenchinhanh}</td>
+                            <td>${value.diachi}</td>
+                            <td>${value.giomocua}</td>
+                            <td>${value.giodongcua}</td>
+                            <td>${value.tinhtrang}</td>
+                        </tr> 
+                `
+            })
+            document.getElementById("table").innerHTML=thead+element;
+        }
+
+        async function chinhsuachinhanh(machinhanh){
+            var modal2 = document.getElementById("model-chitietsanpham");
+            try {
+                let data = await axios.get("http://localhost:8080/api/doitac/chinhanh?machinhanh="+machinhanh);
+                let chinhanh = data.data;
+                modal2.innerHTML = `<div class="modal-content">
+                            <!-- 2 form co name trung nhau -->
+                            <form action="#" name="fix-product"> 
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Chỉnh sửa chi nhánh</h2>
+                                    <span class="close">&times;</span>
+                                </div>
+
+                                <div class="modal-body inputModal">
+                                    <label for="tenchinhanh">Tên chi nhánh:</label>
+                                    <br>
+                                    <input type="text" value="${chinhanh.tenchinhanh}" name="tenchinhanh" id="tenchinhanh"
+                                        placeholder="Nhập tên chi nhánh" />
+                                    <br>
+                                    <label for="diachichinhanh">Địa chỉ:</label>
+                                    <br>
+                                    <input type="text" value="${chinhanh.diachi}" name="diachichinhanh" id="diachichinhanh"
+                                        placeholder="Nhập địa chỉ chi nhánh" />
+                                    <br>
+                                    <label for="giomocuachinhanh">Giờ mở cửa:</label>
+                                    <br>
+                                    <input type="number" value="${chinhanh.giomocua}" name="giomocuachinhanh" id="giomocuachinhanh">
+                                    <br>
+                                    <label for="giodongcuachinhanh">Giờ đóng cửa:</label>
+                                    <br>
+                                    <input type="number" value="${chinhanh.giodongcua}" name="giodongcuachinhanh" id="giodongcuachinhanh">
+                                    <br>
+                                    <label for="tinhtrangchinhanh">Tình trạng:</label>
+                                    <br>
+                                    <select id="tinhtrangchinhanh" class="form-control"
+                                        aria-label=".form-select-sm example">
+                                        <option value="bình thường ">Bình thường</option>
+                                        <option value="tạm nghỉ">Tạm nghỉ</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button onclick="close_model()" type="button" id="luuSP" class="btn btn-primary order">Lưu thay đổi</button>
+                                    <button onclick="close_model()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                </div>
+                            </form>
+                        </div>`
+                        $("#tinhtrangchinhanh :selected").text(chinhanh.tinhtrang);
+                        modal2.style.display = "block";
+
+            } catch (error) {
+                console.log(error);
+            }
+                
+        }
+
+        let close_model = function () {
+            var modal2 = document.getElementById("model-chitietsanpham");
+             modal2.style.display = "none";
+        }
+
+        function updateChiNhanh(machinhanh){
             var tenchinhanh =document.getElementById("tenchinhanh").value ;
-            var diachi =document.getElementById("diachichinhanh").value ;
+            var diachi=document.getElementById("diachichinhanh").value ;
             var giomocua =document.getElementById("giomocuachinhanh").value ;
             var giodongcua =document.getElementById("giodongcuachinhanh").value ;
-            let tinhtrang= $("#tinhtrangchinhanh :selected").text();
-            let madoitac = JSON.parse(window.localStorage.getItem("account")).mataikhoan;
-            let chinhanh={
-                        tenchinhanh:tenchinhanh,
-                        diachi:diachi,
-                        giomocua:giomocua,
-                        giodongcua:giodongcua,
-                        tinhtrang:tinhtrang,
-                        madoitac:madoitac
+            console.log(mamon+tenmon+mieuta+gia+tinhtrang);
+            let monan={
+                        mamon: mamon,
+                        tenmon: tenmon,
+                        mieuta: mieuta,
+                        gia: gia,
+                        tinhtrang: tinhtrang
                     }
-            console.log(chinhanh);
-            axios.post("http://localhost:8080/api/doitac/chinhanh/insert",chinhanh)
+            axios.post("http://localhost:8080/api/doitac/menu/update",monan)
             .then(function(response){
                 setTimeout(()=>{
-                     alert("đã thêm chi nhánh");                
+                alert("đã chỉnh sửa món");
+                close_model();                
                 },500);
+                getMenu()
             }).error(function(error){
                 console.log(error);
                 setTimeout(()=>{
-                    alert("thêm không thành công");                
+                alert("chỉnh sửa không thành công");
+                close_model();                
                 },500);
+                getMenu()
             })
-  
+           
         }
     </script>
 </body>

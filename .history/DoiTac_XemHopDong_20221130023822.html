@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body onload="getHopdong()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
   <!-- Header -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -72,8 +72,29 @@
       <div class="row">
         <div class="col-12">
           <h2>Danh sách hợp đồng</h2>
-          <table id="table" class="table">
-            
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Mã hợp đồng</th>
+                <th scope="col">Ngày lập</th>
+                <th scope="col">Ngày hết hạn</th>
+                <th scope="col">Người đại diện</th>
+                <th scope="col">STK</th>
+                <th scope="col">Ngân hàng</th>
+                <th scope="col">Số chi nhánh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a>1</a></td>
+                <td>2022-11-10</td>
+                <td>20225-11-10</td>
+                <td>Nguyễn Văn A</td>
+                <td>0123456789</td>
+                <td>MB Bank</td>
+                <td>5</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -132,38 +153,37 @@
     init();
 
 let rows = [];
-async function getHopdong(){
+async function getChinhanh(){
     let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
     try {
-        let data = await axios.get("http://localhost:8080/api/doitac/hopdong/"+madoitac);
+        let data = await axios.get("http://localhost:8080/api/doitac/chinhanh/"+madoitac);
         rows = data.data;
-        renderHopdong(rows);
+        renderChinhanh(rows);
     } catch (error) {
         console.log(error);
     }
 }
 
-function renderHopdong(data){
-    let thead = `<thead>
-                <tr>
-                  <th scope="col">Mã hợp đồng</th>
-                  <th scope="col">Ngày lập</th>
-                  <th scope="col">STK</th>
-                  <th scope="col">Ngân hàng</th>
-                  <th scope="col">Trạng thái</th>
-                  <th scope="col">Người đại diện</th>
-                </tr>
-               </thead>`
+function renderChinhanh(data){
+    let thead = `<tr>
+                    <th>Mã chi nhánh</th>
+                    <th>Tên chi nhánh</th>
+                    <th>Địa chỉ</th>
+                    <th>Giờ mở cửa</th>
+                    <th>Giờ đóng cửa</th>
+                    <th>Tình trạng</th>
+                </tr>`
     let element = ``;
     data.map( value => {
-        element+=`<tr>
-                <td><a>${value.mahopdong}</a></td>
-                <td>${value.ngaylap}</td>
-                <td>${value.sotaikhoan}</td>
-                <td>${value.nganhang}</td>
-                <td>${value.trangthai}</td>
-                <td>${value.doitac.nguoidaidien}</td>
-              </tr>`
+        element+=`<tr class="table-row">
+                    <td><a onclick="chinhsuachinhanh(${value.machinhanh})" id="${value.machinhanh}">${value.machinhanh}</a></td>
+                    <td>${value.tenchinhanh}</td>
+                    <td>${value.diachi}</td>
+                    <td>${value.giomocua}</td>
+                    <td>${value.giodongcua}</td>
+                    <td>${value.tinhtrang}</td>
+                </tr> 
+        `
     })
     document.getElementById("table").innerHTML=thead+element;
 }

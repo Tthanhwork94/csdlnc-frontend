@@ -15,8 +15,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="validate.js" defer></script>
     <script src="themChiNhanh.js" defer></script>
-    <script src="/function.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -57,7 +55,7 @@
                     </li>
                     <li><a href="DoiTac_DonHang.html">Đơn hàng</a></li>
                     <li class="dropdown">
-                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="DoiTac_ThongTin.html">Thông tin</a></li>
                             <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
@@ -91,14 +89,14 @@
                             <label for="giodongcuachinhanh">Giờ đóng cửa:</label>
                             <input type="number" name="giodongcuachinhanh" id="giodongcuachinhanh">
 
-                            <label  for="tinhtrangchinhanh">Tình trạng:</label>
-                            <select id="tinhtrangchinhanh" class="form-control" aria-label=".form-select-sm example">
-                                <option value="bình thường">Bình thường</option>
-                                <option value="tạm nghỉ">Tạm nghỉ</option>
+                            <label for="tinhtrangchinhanh">Tình trạng:</label>
+                            <select class="form-control" aria-label=".form-select-sm example">
+                                <option value="binhthuong">Bình thường</option>
+                                <option value="tamnghi">Tạm nghỉ</option>
                             </select>
                             <br>
 
-                            <button onclick="inserMon()" type="button" id="themsp">Thêm</button>
+                            <button type="submit" id="themsp">Thêm</button>
 
                         </form>
                     </div>
@@ -155,38 +153,6 @@
             </div>
         </div>
     </div>
-    <script>
-        init();
-        function inserMon(){
-            var tenchinhanh =document.getElementById("tenchinhanh").value ;
-            var diachi =document.getElementById("diachichinhanh").value ;
-            var giomocua =document.getElementById("giomocuachinhanh").value ;
-            var giodongcua =document.getElementById("giodongcuachinhanh").value ;
-            let tinhtrang= $("#tinhtrangchinhanh :selected").text();
-            let madoitac = JSON.parse(window.localStorage.getItem("account")).mataikhoan;
-            let chinhanh={
-                        tenchinhanh:tenchinhanh,
-                        diachi:diachi,
-                        giomocua:giomocua,
-                        giodongcua:giodongcua,
-                        tinhtrang:tinhtrang,
-                        madoitac:madoitac
-                    }
-            console.log(chinhanh);
-            axios.post("http://localhost:8080/api/doitac/chinhanh/insert",chinhanh)
-            .then(function(response){
-                setTimeout(()=>{
-                     alert("đã thêm chi nhánh");                
-                },500);
-            }).error(function(error){
-                console.log(error);
-                setTimeout(()=>{
-                    alert("thêm không thành công");                
-                },500);
-            })
-  
-        }
-    </script>
 </body>
 
 </html>
