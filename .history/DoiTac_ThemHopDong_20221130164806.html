@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery | Doi Tac</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="themHopDong.js" defer></script>
+    <script src="validate.js" defer></script>
+    <script src="/function.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body onload="getChinhanh()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="DoiTac_Home.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="DoiTac_Home.html">Trang chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hợp đồng <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemHopDong.html">Thêm hợp đồng</a></li>
+                            <li><a href="DoiTac_XemHopDong.html">Xem hợp đồng</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Chi nhánh<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemChiNhanh.html">Thêm chi nhánh</a></li>
+                            <li><a href="DoiTac_XemChiNhanh.html">Xem chi nhánh</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Món ăn<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemMonAn.html">Thêm món ăn</a></li>
+                            <li><a href="DoiTac_XemMonAn.html">Xem thực đơn</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="DoiTac_DonHang.html">Đơn hàng</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+<!-- Center-->
+<div class="center-content" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="thucdon">Danh sách chi nhánh</h2>
+                <table id="table" class='table'>
+                    
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <div class="modal-content-phieunhap">
+                    <form action="#" name="add-product">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Hợp đồng</h2>
+                    </div>
+                    <div class="modal-input">
+                        <div class="cart-time">
+                            <label for="ngaylap">Ngày lập:</label>
+                                <br>
+                                <input type="date" name="ngaylap" id="ngaylap">
+                                <br>
+                                <label for="ngayhethan">Ngày hết hạn:</label>
+                                <br>
+                                <input type="date" name="ngayhethan" id="ngayhethan">
+                                <br>
+                                <label for="stk">STK:</label>
+                                <br>
+                                <input type="text" name="stk" id="stk" placeholder="Nhập STK" />
+                                <br>
+                                <label for="nganhang">Ngân hàng:</label>
+                                <br>
+                                <input type="text" name="nganhang" id="nganhang" placeholder="Nhập tên ngân hàng" />
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="cart-row">
+                            <span class="cart-item cart-header cart-column">Mã chi nhánh</span>
+                            <span class="cart-price cart-header cart-column">Địa chỉ chi nhánh</span>
+                        </div>
+                        <div id="cart-items" >
+                            <div class="cart-row">
+
+                            </div>
+                        </div>
+                        <div class="cart-total">
+                            <strong class="cart-total-title">Tổng Cộng:</strong>
+                            <span id="total-chinhanh" class="cart-total-price"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-primary order" id="nhaphang">Xác nhận</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        init();
+
+let rows = [];
+async function getChinhanh(){
+    let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+    try {
+        let data = await axios.get("http://localhost:8080/api/doitac/chinhanh/"+madoitac);
+        rows = data.data;
+        renderChinhanh(rows);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function renderChinhanh(data){
+    let thead = `<thead>
+                    <tr>
+                        <th scope="col">Mã chi nhánh</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>`
+    let element = ``;
+    data.map( value => {
+        element+=`<tr class="content-product">
+                    <td id="${value.machinhanh}" class="price"><span class="money">${value.machinhanh}</span></td>
+                    <td class="content-product-h3">${value.diachi}</td>
+                    <td><a onclick="addToDanhSach(DanhSachChiNhanh,findChinhanh(${value.machinhanh},'${value.diachi}'))" type="button" class="btn btn-cart">Thêm</a></td>
+                </tr> 
+        `
+    })
+    document.getElementById("table").innerHTML=thead+element;
+    };
+
+    var DanhSachChiNhanh=[];
+   
+    function findChinhanh(machinhanh,diachi){
+        return {
+            machinhanh:machinhanh,
+            diachi:diachi
+        }
+    };
+    function checkexist(list,machinhanh){
+        let check = false
+        list.map(function(item){
+            if(item.machinhanh===machinhanh){
+                check = true;
+            }
+        });
+        return check;
+    }
+
+    function remove(arr,machinhanh){
+        for( var i = 0; i < arr.length; i++){                         
+            if ( arr[i].machinhanh === machinhanh) { 
+               arr.splice(i, 1);
+               loadDS(arr); 
+               alert("xoas");
+            }
+        }  
+    }
+
+    function addToDanhSach(DanhSachChiNhanh,Chinhanh){
+        if(checkexist(DanhSachChiNhanh,Chinhanh.machinhanh)===false){
+            DanhSachChiNhanh.push(Chinhanh);
+            loadDS(DanhSachChiNhanh);
+        }
+    };
+    function loadDS(data){
+        let thead = ``
+        let element = ``;
+        data.map( value => {
+        element+=`
+            <div class="cart-row">
+            <span class="cart-price cart-column">${value.machinhanh}</span>
+            <div class="cart-item cart-column">
+                <span class="cart-item-title">${value.diachi}</span>
+            </div>
+            <button style="width: 10%; height:40px" type="button" class="btn btn-danger btn-sm">Small button</button>
+            </div>
+        `
+    })
+    document.getElementById("cart-items").innerHTML=thead+element;
+    }
+
+    
+    </script>
+</body>
+
+</html>
