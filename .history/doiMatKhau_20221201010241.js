@@ -1,15 +1,15 @@
-// // Modal Model-fix-password
-// var modal2 = document.getElementById("Model-fix-password");
-// var btn2 = document.getElementById("fix-password");
-// // var close2 = document.getElementsByClassName("close2")[0];
-// // var close_footer2 = document.getElementsByClassName("close-footer2")[0];
-// var order2 = document.getElementsByClassName("order2")[0];
-// btn2.onclick  = function () {
-//   modal2.style.display = "block";
-// }
-// close2.onclick = function () {
-//   modal2.style.display = "none";
-// }
+// Modal Model-fix-password
+var modal2 = document.getElementById("Model-fix-password");
+var btn2 = document.getElementById("fix-password");
+// var close2 = document.getElementsByClassName("close2")[0];
+// var close_footer2 = document.getElementsByClassName("close-footer2")[0];
+var order2 = document.getElementsByClassName("order2")[0];
+btn2.onclick  = function () {
+  modal2.style.display = "block";
+}
+close2.onclick = function () {
+  modal2.style.display = "none";
+}
 // close_footer2.onclick = function () {
 //   modal2.style.display = "none";
 // }

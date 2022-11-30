@@ -130,7 +130,7 @@
                                             <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                                     <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
@@ -168,7 +168,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()"  type="button" id="btn-changepwd" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button onlick="alert(123)"  type="button" id="btn-changepwd" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
                             </form>
                         </div>
@@ -300,13 +300,6 @@
                 alert("lỗi hệ thống!");
                 closemdlchangepwd();
             })
-        }
-        var btn2 = document.getElementById("fix-inf");
-        btn2.onclick  = function () {
-            document.getElementById("Model-fix-inf").style.display = "block";   
-        } 
-        function closeinf(){
-            document.getElementById("Model-fix-inf").style.display = "none";  
         }
     </script>
 </body>

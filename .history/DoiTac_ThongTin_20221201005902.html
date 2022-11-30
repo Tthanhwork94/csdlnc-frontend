@@ -130,7 +130,7 @@
                                             <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                                     <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
@@ -167,8 +167,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()"  type="button" id="btn-changepwd" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <a onlick="doiMatKhau()"  type="button" id="btn-changepwd" class="" >Lưu thay đổi</a>
                                 </div>
                             </form>
                         </div>
@@ -267,14 +267,12 @@
             document.getElementById("table").innerHTML=thead+element;
         }
 
-        var btn = document.getElementById("fix-password");
+        var btn = document.getElementById("fix-inf");
         btn.onclick  = function () {
             document.getElementById("Model-fix-password").style.display = "block";
             
         }   
-        function closemdlchangepwd(){
-            document.getElementById("Model-fix-password").style.display = "none";
-        }
+
     
         function doiMatKhau(){
             let thongtinmatkhau;
@@ -290,23 +288,16 @@
             .then(function(response){
                 if(response.data!=-1){
                     alert("đổi mật khẩu thành công"+response.data);
-                    closemdlchangepwd();
+                    document.getElementById("Model-fix-password").style.display = "none";
                 }else{
                     alert("đổi mật khẩu thất tại");
-                    closemdlchangepwd()
+                    document.getElementById("Model-fix-password").style.display = "none";
                 }
             })
             .error(function(error){
                 alert("lỗi hệ thống!");
-                closemdlchangepwd();
+                document.getElementById("Model-fix-password").style.display = "none";
             })
-        }
-        var btn2 = document.getElementById("fix-inf");
-        btn2.onclick  = function () {
-            document.getElementById("Model-fix-inf").style.display = "block";   
-        } 
-        function closeinf(){
-            document.getElementById("Model-fix-inf").style.display = "none";  
         }
     </script>
 </body>

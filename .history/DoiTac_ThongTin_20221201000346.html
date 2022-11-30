@@ -17,10 +17,9 @@
     <script src="doiMatKhau.js" defer></script>
     <script src="validate.js" defer></script>
     <script src="/function.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body onload="getThongtin()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -78,8 +77,29 @@
             <div class="row">
                 <div class="col-12">
                     <h2>Thông tin đối tác</h2>
-                    <table id="table" class='table'>
-                        
+                    <table class='table'>
+                        <tr>
+                            <th>Mã đối tác</th>
+                            <th>Email</th>
+                            <th>Tên quán</th>
+                            <th>Người đại diện</th>
+                            <th>Số lượng chi nhánh</th>
+                            <th>Đơn hàng dự kiến</th>
+                            <th>Loại ẩm thực</th>
+                            <th>Địa chỉ kinh doanh</th>
+                            <th>SĐT</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>abc@gmail.com</td>
+                            <td>Ngô Quyền</td>
+                            <td>Nguyễn Văn A</td>
+                            <td>5</td>
+                            <td>200</td>
+                            <td>Cơm</td>
+                            <td>Thủ Đức</td>
+                            <td>0123456789</td>
+                        </tr>
                     </table>
                     <!-- Modal -->
                     <!-- Button trigger modal -->
@@ -130,7 +150,7 @@
                                             <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                                     <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
@@ -167,8 +187,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()"  type="button" id="btn-changepwd" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
                             </form>
                         </div>
@@ -228,85 +248,59 @@
     </div>
     <script>
         init();
-        async function getThongtin(){
-            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            try {
-                let data = await axios.get("http://localhost:8080/api/doitac/infor/"+madoitac);
-                rows = data.data;
-                renderThongtin(rows);
-            } catch (error) {
-                console.log(error);
-            }
+        function getThongtin(){
+            
         }
         function renderThongtin(data){
             let thead = `<tr>
-                            <th>Mã đối tác</th>
-                            <th>Email</th>
-                            <th>Tên quán</th>
-                            <th>Người đại diện</th>
-                            <th>Số lượng chi nhánh</th>
-                            <th>Đơn hàng dự kiến</th>
-                            <th>Loại ẩm thực</th>
-                            <th>Địa chỉ kinh doanh</th>
-                            <th>SĐT</th>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày lập</th>
+                            <th>SDT khách hàng</th>
+                            <th>Địa chỉ giao</th>
+                            <th>Trạng thái</th>
+                            <th>Phí giao hàng</th>
+                            <th>Thành tiền</th>
+                            <th>Mã chi nhánh</th>
+                            <th>Mã tài xế</th>
+                            <th>Mã khách hàng</th>
                         </tr>`
             let element = ``;
-            element+=`<tr class="table-row">
-                        <td>${data.madoitac}</td>
-                        <td>${data.email}</td>
-                        <td>${data.tenquan}</td>
-                        <td>${data.nguoidaidien}</td>
-                        <td>${data.slchinhanh}</td>
-                        <td>${data.donhangdukien}</td>
-                        <td>${data.loaiamthuc}</td>
-                        <td>${data.diachikinhdoanh}</td>
-                        <td>${data.sodienthoai}</td>
-                    </tr>
+            data.map( value => {
+                if(value.taixe != null){
+                    element+=`<tr class="table-row">
+                                <td>${value.madondathang}</td>
+                                <td>${value.ngaylap}</td>
+                                <td>${value.sdtkhachhang}</td>
+                                <td>${value.diachigiaohang}</td>
+                                <td>${value.trangthai}</td>
+                                <td>${value.phigiaohang}</td>
+                                <td>${value.thanhtien}</td>
+                                <td>${value.chinhanh.machinhanh}</td>
+                                <td>${value.taixe.mataixe}</td>
+                                <td>${value.khachhang.makhachhang}</td>
+                                <td><a onclick="xemchitietdonhang(${value.madondathang}) ">chi tiết</a></td>
+                                <td><a>Chuẩn bị</a></td>
+                            </tr>
                     `
-
-            document.getElementById("table").innerHTML=thead+element;
-        }
-
-        var btn = document.getElementById("fix-password");
-        btn.onclick  = function () {
-            document.getElementById("Model-fix-password").style.display = "block";
-            
-        }   
-        function closemdlchangepwd(){
-            document.getElementById("Model-fix-password").style.display = "none";
-        }
-    
-        function doiMatKhau(){
-            let thongtinmatkhau;
-            let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            let matkhaucu = document.getElementById("matkhau").value;
-            let matkhaumoi=document.getElementById("matkhaumoi").value;
-            thongtinmatkhau={
-                mataikhoan:mataikhoan,
-                matkhaucu:matkhaucu,
-                matkhaumoi:matkhaumoi
-            }
-            axios.post("http://localhost:8080/api/changepassword",thongtinmatkhau)
-            .then(function(response){
-                if(response.data!=-1){
-                    alert("đổi mật khẩu thành công"+response.data);
-                    closemdlchangepwd();
                 }else{
-                    alert("đổi mật khẩu thất tại");
-                    closemdlchangepwd()
+                    element+=`<tr class="table-row">
+                                <td>${value.madondathang}</td>
+                                <td>${value.ngaylap}</td>
+                                <td>${value.sdtkhachhang}</td>
+                                <td>${value.diachigiaohang}</td>
+                                <td>${value.trangthai}</td>
+                                <td>${value.phigiaohang}</td>
+                                <td>${value.thanhtien}</td>
+                                <td>${value.chinhanh.machinhanh}</td>
+                                <td>chưa có</td>
+                                <td>${value.khachhang.makhachhang}</td>
+                                <td><a onclick="xemchitietdonhang(${value.madondathang})">chi tiết</a></td>
+                                <td><a>Chuẩn bị</a></td>
+                            </tr>
+                    `
                 }
             })
-            .error(function(error){
-                alert("lỗi hệ thống!");
-                closemdlchangepwd();
-            })
-        }
-        var btn2 = document.getElementById("fix-inf");
-        btn2.onclick  = function () {
-            document.getElementById("Model-fix-inf").style.display = "block";   
-        } 
-        function closeinf(){
-            document.getElementById("Model-fix-inf").style.display = "none";  
+            document.getElementById("table").innerHTML=thead+element;
         }
     </script>
 </body>

@@ -130,7 +130,7 @@
                                             <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                                     <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
@@ -300,13 +300,6 @@
                 alert("lỗi hệ thống!");
                 closemdlchangepwd();
             })
-        }
-        var btn2 = document.getElementById("fix-inf");
-        btn2.onclick  = function () {
-            document.getElementById("Model-fix-inf").style.display = "block";   
-        } 
-        function closeinf(){
-            document.getElementById("Model-fix-inf").style.display = "none";  
         }
     </script>
 </body>
