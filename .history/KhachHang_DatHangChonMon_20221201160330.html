@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery|Khach hang</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="validate.js" defer></script>
+    <!-- <script src="datHang.js" defer></script> -->
+    <script src="/function.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body onload="getMenu()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
+                    <li><a href="KhachHang_DatHang.html">Đặt hàng</a></li>
+                    <li><a href="KhachHang_XemDonHang.html">Xem đơn hàng</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- modal gio hang -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <form action="#" name="add-product">
+                <div class="modal-header">
+                    <h2 class="modal-title">Giỏ Hàng</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-row">
+                        <span class="cart-item cart-header cart-column">Sản Phẩm</span>
+                        <span class="cart-price cart-header cart-column">Giá</span>
+                        <span class="cart-quantity cart-header cart-column">Số Lượng</span>
+                    </div>
+                    <div class="cart-items">
+
+                    </div>
+                    <div class="cart-total">
+                        <strong class="cart-ship-title">Phí vận chuyển:</strong>
+                        <span class="cart-ship-price">0VNĐ</span>
+                        <br>
+                        <strong class="cart-total-title">Tổng Cộng:</strong>
+                        <span class="cart-total-price">0VNĐ</span>
+                    </div>
+                    <div class="cart-time inputModal">
+                        <label for="maCN">Chọn chi nhánh đặt:</label>
+                                <select name="" id="maCN" class="form-control" required="required">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            <label for="tuychon">Tuỳ chọn:</label>
+                            <br>
+                            <input type="text" name="tuychon" id="tuychon" placeholder="Nhập tuỳ chọn món ăn" />
+                            <br>
+                            <label for="sdt">SDT:</label>
+                            <br>
+                            <input type="text" name="sdt" id="sdt" placeholder="Nhập SDT giao" />
+                            <br>
+                            <label for="diachi">Địa chỉ:</label>
+                            <br>
+                            <input type="text" name="diachi" id="diachi" placeholder="Nhập địa chỉ giao" />
+                    </div>
+                </div>
+                <div class="modal-footer">                    
+                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                        <button type="submit" id="thanhtoan" class="btn btn-primary order">Đặt hàng</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Center-->
+    <div class="center-content" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 products">
+                    <h2 class="thucdon">Thực đơn hôm nay</h2>
+                    <button class="glyphicon glyphicon-shopping-cart giohang"  id="cart">
+                        Giỏ hàng
+                    </button>
+                    <table id="table" class='table'>
+                        
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="h-100 h-custom" style="background-color: #eee;">
+        <div class="container h-100 py-5">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card shopping-cart" style="border-radius: 15px;">
+                <div class="card-body text-black">
+      
+                  <div class="row">
+                    <div class="col-lg-6 px-5 py-4">
+      
+                      <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Your products</h3>
+      
+                      <div class="d-flex align-items-center mb-5">
+                        <div class="flex-shrink-0">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/13.webp"
+                            class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
+                          <h5 class="text-primary">Samsung Galaxy M11 64GB</h5>
+                          <h6 style="color: #9e9e9e;">Color: white</h6>
+                          <div class="d-flex align-items-center">
+                            <p class="fw-bold mb-0 me-5 pe-3">799$</p>
+                            <div class="def-number-input number-input safari_only">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                class="minus"></button>
+                              <input class="quantity fw-bold text-black" min="0" name="quantity" value="1"
+                                type="number">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus"></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="d-flex align-items-center mb-5">
+                        <div class="flex-shrink-0">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/6.webp"
+                            class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
+                          <h5 class="text-primary">Headphones Bose 35 II</h5>
+                          <h6 style="color: #9e9e9e;">Color: Red</h6>
+                          <div class="d-flex align-items-center">
+                            <p class="fw-bold mb-0 me-5 pe-3">239$</p>
+                            <div class="def-number-input number-input safari_only">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                class="minus"></button>
+                              <input class="quantity fw-bold text-black" min="0" name="quantity" value="1"
+                                type="number">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus"></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="d-flex align-items-center mb-5">
+                        <div class="flex-shrink-0">
+                          <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/1.webp"
+                            class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <a href="#!" class="float-end text-black"><i class="fas fa-times"></i></a>
+                          <h5 class="text-primary">iPad 9.7 6-gen WiFi 32GB</h5>
+                          <h6 style="color: #9e9e9e;">Color: rose pink</h6>
+                          <div class="d-flex align-items-center">
+                            <p class="fw-bold mb-0 me-5 pe-3">659$</p>
+                            <div class="def-number-input number-input safari_only">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                class="minus"></button>
+                              <input class="quantity fw-bold text-black" min="0" name="quantity" value="2"
+                                type="number">
+                              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                class="plus"></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <hr class="mb-4" style="height: 2px; background-color: #1266f1; opacity: 1;">
+      
+                      <div class="d-flex justify-content-between px-x">
+                        <p class="fw-bold">Discount:</p>
+                        <p class="fw-bold">95$</p>
+                      </div>
+                      <div class="d-flex justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
+                        <h5 class="fw-bold mb-0">Total:</h5>
+                        <h5 class="fw-bold mb-0">2261$</h5>
+                      </div>
+      
+                    </div>
+                    <div class="col-lg-6 px-5 py-4">
+      
+                      <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Payment</h3>
+      
+                      <form class="mb-5">
+      
+                        <div class="form-outline mb-5">
+                          <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                            value="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                          <label class="form-label" for="typeText">Card Number</label>
+                        </div>
+      
+                        <div class="form-outline mb-5">
+                          <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                            value="John Smith" />
+                          <label class="form-label" for="typeName">Name on card</label>
+                        </div>
+      
+                        <div class="row">
+                          <div class="col-md-6 mb-5">
+                            <div class="form-outline">
+                              <input type="text" id="typeExp" class="form-control form-control-lg" value="01/22"
+                                size="7" id="exp" minlength="7" maxlength="7" />
+                              <label class="form-label" for="typeExp">Expiration</label>
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-5">
+                            <div class="form-outline">
+                              <input type="password" id="typeText" class="form-control form-control-lg"
+                                value="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                              <label class="form-label" for="typeText">Cvv</label>
+                            </div>
+                          </div>
+                        </div>
+      
+                        <p class="mb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit <a
+                            href="#!">obcaecati sapiente</a>.</p>
+      
+                        <button type="button" class="btn btn-primary btn-block btn-lg">Buy now</button>
+      
+                        <h5 class="fw-bold mb-5" style="position: absolute; bottom: 0;">
+                          <a href="#!"><i class="fas fa-angle-left me-2"></i>Back to shopping</a>
+                        </h5>
+      
+                      </form>
+      
+                    </div>
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <script>
+        init();
+        let rows = [];
+        async function getMenu(){
+            let madoitac = localStorage.getItem('madoitac');
+            try {
+                let data = await axios.get("http://localhost:8080/api/doitac/menu/"+madoitac);
+                rows = data.data;
+                renderMenu(rows);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function renderMenu(users){
+            let thead = `<tr>
+                            <th>Mã món ăn</th>
+                            <th>Tên món ăn</th>
+                            <th>Miêu tả</th>
+                            <th>Giá</th>
+                            <th>Tình trạng</th>
+                        </tr>`
+            let element = ``;
+            users.map( value => {
+                element+=`<tr class="content-product">
+                            <td> <a onclick="chinhsuamon(${value.mamon})" id="${value.mamon}">${value.mamon}</a></td>
+                            <td>${value.tenmon}</td>
+                            <td>${value.mieuta}</td>
+                            <td>${value.gia}</td>
+                            <td>${value.tinhtrang}</td>
+                            <td><button type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                        </tr>
+                `
+            })
+            document.getElementById("table").innerHTML=thead+element;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery | Doi Tac</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="thongTinDoiTac.js" defer></script>
+    <script src="doiMatKhau.js" defer></script>
+    <script src="validate.js" defer></script>
+    <script src="/function.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body onload="getThongtin()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="DoiTac_Home.html">Trang chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hợp đồng <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemHopDong.html">Thêm hợp đồng</a></li>
+                            <li><a href="DoiTac_XemHopDong.html">Xem hợp đồng</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Chi nhánh<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemChiNhanh.html">Thêm chi nhánh</a></li>
+                            <li><a href="DoiTac_XemChiNhanh.html">Xem chi nhánh</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Món ăn<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThemMonAn.html">Thêm món ăn</a></li>
+                            <li><a href="DoiTac_XemMonAn.html">Xem thực đơn</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="DoiTac_DonHang.html">Đơn hàng</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="DoiTac_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+
+    <!-- Center-->
+    <div class="center-content" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Thông tin đối tác</h2>
+                    <table id="table" class='table'>
+                        
+                    </table>
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
+                    <button id="fix-inf" class="btn-modal">Chỉnh sửa</button>
+
+                    <!-- Modal -->
+                    <div id="Model-fix-inf" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" action="#" name="add-product">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Thông tin cá nhân</h2>
+                                    <span class="close">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="email">Email:</label>
+                                            <br>
+                                            <input type="email" name="email" id="email"
+                                                placeholder="Nhập email" />
+                                            <br>
+                                            <label for="tenquan">Tên quán:</label>
+                                            <br>
+                                            <input type="text" name="tenquan" id="tenquan"
+                                                placeholder="Nhập tên quán" />
+                                            <br>
+                                            <label for="nguoidaidien">Người đại diện:</label>
+                                            <br>
+                                            <input type="text" name="nguoidaidien" id="nguoidaidien"
+                                                placeholder="Nhập người đại diện" />
+                                            <br>
+                                            <label for="donhangdukien">Đơn hàng dự kiến:</label>
+                                            <br>
+                                            <input type="number" name="donhangdukien" id="donhangdukien"
+                                                placeholder="Nhập số lượng đơn hàng dự kiến" />
+                                            <br>
+                                            <label for="loaiamthuc">Loại ẩm thực:</label>
+                                            <br>
+                                            <input type="text" name="loaiamthuc" id="loaiamthuc"
+                                                placeholder="Nhập loại ẩm thực" />
+                                            <br>
+                                            <label for="diachi">Địa chỉ kinh doanh:</label>
+                                            <br>
+                                            <input type="text" name="diachi" id="diachi"
+                                                placeholder="Nhập địa chỉ kinh doanh" />
+                                            <br>
+                                            <label for="sdt">SDT:</label>
+                                            <br>
+                                            <input type="text" name="sdt" id="sdt" placeholder="Nhập SDT" />
+                                            <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button onclick="updateinfor()" type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
+                                        đổi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Đổi mật khẩu -->
+                    <!-- Modal -->
+                    <!-- Button trigger modal -->
+                    <button id="fix-password" class="btn-modal">Đổi mật khẩu</button>
+                    <!-- Modal -->
+                    <div id="Model-fix-password" class="modal">
+                        <div class="modal-content">
+                            <form class="inputModal" name="fix-pass" action="#">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Đổi mật khẩu</h2>
+                                    <span class="close2">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="matkhau">Mật khẩu hiện tại:</label>
+                                    <br>
+                                    <input type="text" name="matkhau" id="matkhau"
+                                        placeholder="Nhập mật khẩu hiện tại" />
+                                    <br>
+                                    <label for="matkhaumoi">Mật khẩu mới:</label>
+                                    <br>
+                                    <input type="password" name="matkhaumoi" id="matkhaumoi"
+                                        placeholder="Nhập mật khẩu" />
+                                    <br>
+                                    <label for="xacnhanmatkhaumoi">Xác nhận mật khẩu:</label>
+                                    <br>
+                                    <input type="password" name="xacnhanmatkhaumoi" id="xacnhanmatkhaumoi"
+                                        placeholder="Nhập lại mật khẩu" />
+                                    <br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button onclick="doiMatKhau()"  type="button" id="btn-changepwd" class="btn btn-primary order2">Lưu thay đổi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        init();
+        async function getThongtin(){
+            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+            try {
+                let data = await axios.get("http://localhost:8080/api/doitac/infor/"+madoitac);
+                rows = data.data;
+                renderThongtin(rows);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        function renderThongtin(data){
+            let thead = `<tr>
+                            <th>Mã đối tác</th>
+                            <th>Email</th>
+                            <th>Tên quán</th>
+                            <th>Người đại diện</th>
+                            <th>Số lượng chi nhánh</th>
+                            <th>Đơn hàng dự kiến</th>
+                            <th>Loại ẩm thực</th>
+                            <th>Địa chỉ kinh doanh</th>
+                            <th>SĐT</th>
+                        </tr>`
+            let element = ``;
+            element+=`<tr class="table-row">
+                        <td>${data.madoitac}</td>
+                        <td>${data.email}</td>
+                        <td>${data.tenquan}</td>
+                        <td>${data.nguoidaidien}</td>
+                        <td>${data.slchinhanh}</td>
+                        <td>${data.donhangdukien}</td>
+                        <td>${data.loaiamthuc}</td>
+                        <td>${data.diachikinhdoanh}</td>
+                        <td>${data.sdt}</td>
+                    </tr>
+                    `
+
+            document.getElementById("table").innerHTML=thead+element;
+        }
+
+        var btn = document.getElementById("fix-password");
+        btn.onclick  = function () {
+            document.getElementById("Model-fix-password").style.display = "block";
+            
+        }   
+        function closemdlchangepwd(){
+            document.getElementById("Model-fix-password").style.display = "none";
+        }
+    
+        function doiMatKhau(){
+            let thongtinmatkhau;
+            let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+            let matkhaucu = document.getElementById("matkhau").value;
+            let matkhaumoi=document.getElementById("matkhaumoi").value;
+            thongtinmatkhau={
+                mataikhoan:mataikhoan,
+                matkhaucu:matkhaucu,
+                matkhaumoi:matkhaumoi
+            }
+            axios.post("http://localhost:8080/api/changepassword",thongtinmatkhau)
+            .then(function(response){
+                if(response.data!=-1){
+                    alert("đổi mật khẩu thành công"+response.data);
+                    closemdlchangepwd();
+                }else{
+                    alert("đổi mật khẩu thất tại");
+                    closemdlchangepwd()
+                }
+            })
+            .error(function(error){
+                alert("lỗi hệ thống!");
+                closemdlchangepwd();
+            })
+        }
+        var btn2 = document.getElementById("fix-inf");
+        btn2.onclick  = getThongtintoModel;
+
+
+        async function getThongtintoModel(){
+            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+            try {
+                let data = await axios.get("http://localhost:8080/api/doitac/infor/"+madoitac);
+                rows = data.data;
+                showModelupdateInfor (rows);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        function showModelupdateInfor (data) {
+            var nguoidaidien =document.getElementById("nguoidaidien");
+            var diachi =document.getElementById("diachi");
+            var email =document.getElementById("email");
+            var tenquan =document.getElementById("tenquan") ;
+            var donhangdukien =document.getElementById("donhangdukien");
+            var loaiamthuc =document.getElementById("loaiamthuc");
+            var sdt =document.getElementById("sdt");
+            nguoidaidien.value = data.nguoidaidien;
+            diachi.value=data.diachikinhdoanh;
+            email.value=data.email;
+            tenquan.value=data.tenquan;
+            donhangdukien.value=data.donhangdukien;
+            loaiamthuc.value=data.loaiamthuc;
+            sdt.value=data.sdt;
+             document.getElementById("Model-fix-inf").style.display = "block";   
+        } 
+        function closeinf(){
+            document.getElementById("Model-fix-inf").style.display = "none";  
+        }
+
+        function updateinfor(){
+            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+            var nguoidaidien =document.getElementById("nguoidaidien");
+            var diachi =document.getElementById("diachi");
+            var email =document.getElementById("email");
+            var tenquan =document.getElementById("tenquan") ;
+            var donhangdukien =document.getElementById("donhangdukien");
+            var loaiamthuc =document.getElementById("loaiamthuc");
+            var sdt =document.getElementById("sdt");
+            let thongtin={
+                madoitac:madoitac,
+                email:email.value,
+                nguoidaidien:nguoidaidien.value,
+                diachikinhdoanh:diachi.value,
+                tenquan:tenquan.value,
+                donhangdukien:donhangdukien.value,
+                loaiamthuc:loaiamthuc.value,
+                sdt:sdt.value
+            }
+            try{
+                axios.get("http://localhost:8080/api/doitac/infor/change",thongtin)
+                .then(function(response){
+                    alert("đổi thông tin thành công!");
+                    closeinf()
+                })
+                .error(function(error){
+                    alert("đã xảy ra lỗi!");
+                    closeinf()
+                });
+            }
+
+        }
+    </script>
+</body>
+
+</html>
