@@ -321,7 +321,11 @@
             axios.post("http://localhost:8080/api/khachhang/donhang/insert",thongtindonhang)
             .then(function(response){
                 danhsachmon.map(function(item){
-                    themchitietdon(response.data,item.mamon,item.soluong);
+                    try{
+                        themchitietdon(response.data,item.mamon,item.soluong);
+                    }catch(e){
+                        themchitietdon(response.data,item.mamon,item.soluong);
+                    }
                     console.log(response.data);
                     console.log(item);
                 })  
@@ -341,13 +345,6 @@
                 soluong: soluong   
             }
             axios.post("http://localhost:8080/api/khachhang/donhangchitiet/insert",donchitiet)
-            .then(function(response){
-                console.log(response.data);
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-  
         }
     </script>
 </body>

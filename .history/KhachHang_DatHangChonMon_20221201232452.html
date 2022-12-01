@@ -258,7 +258,7 @@
                 </div>
                 <div class="modal-footer">                    
                         <button onclick="close_cart()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                        <button onclick="dathang()" type="submit" id="thanhtoan" class="btn btn-primary order">Đặt hàng</button>
+                        <button type="submit" id="thanhtoan" class="btn btn-primary order">Đặt hàng</button>
                 </div>
             </form>
             </div>
@@ -310,7 +310,6 @@
             var machinhanh = document.getElementById("maCN").value;
             let madoitac = localStorage.getItem("madoitac");
             let makhachhang=JSON.parse(localStorage.getItem("account")).mataikhoan;
-            let danhsachmon=JSON.parse(localStorage.getItem("cart")).listmon;
             let thongtindonhang={
                     "sdtkhachhang": sdt,
                     "diachigiaohang":diachi,
@@ -320,34 +319,11 @@
                 }
             axios.post("http://localhost:8080/api/khachhang/donhang/insert",thongtindonhang)
             .then(function(response){
-                danhsachmon.map(function(item){
-                    themchitietdon(response.data,item.mamon,item.soluong);
-                    console.log(response.data);
-                    console.log(item);
-                })  
-                init();
-                close_cart();
-                alert("thành công");
+                alert(response.data);
             })
             .catch(function(error){
                 alert(error);
             });
-        }
-
-        function themchitietdon(madondathang,mamon,soluong){
-            let donchitiet={
-                madondathang: madondathang,
-                mamon: mamon,
-                soluong: soluong   
-            }
-            axios.post("http://localhost:8080/api/khachhang/donhangchitiet/insert",donchitiet)
-            .then(function(response){
-                console.log(response.data);
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-  
         }
     </script>
 </body>

@@ -321,33 +321,39 @@
             axios.post("http://localhost:8080/api/khachhang/donhang/insert",thongtindonhang)
             .then(function(response){
                 danhsachmon.map(function(item){
-                    themchitietdon(response.data,item.mamon,item.soluong);
+                    try{
+                        themchitietdon(response.data,item.mamon,item.soluong,item.gia);
+                    }catch(e){
+                        themchitietdon(response.data,item.mamon,item.soluong,item.gia);
+                    }
                     console.log(response.data);
                     console.log(item);
                 })  
                 init();
                 close_cart();
-                alert("thành công");
+                alert("đặt hàng thành công");
             })
             .catch(function(error){
                 alert(error);
             });
         }
 
-        function themchitietdon(madondathang,mamon,soluong){
+        async function themchitietdon(madondathang,mamon,soluong,gia){
             let donchitiet={
                 madondathang: madondathang,
                 mamon: mamon,
-                soluong: soluong   
+                soluong: soluong,
+                gia: gia  
             }
             axios.post("http://localhost:8080/api/khachhang/donhangchitiet/insert",donchitiet)
             .then(function(response){
                 console.log(response.data);
-            })
-            .catch(function(error){
+            }).catch(function(error){
                 console.log(error);
+                setTimeout(()=>{
+                    alert("lỗi trong lúc thêm");                
+                },500);
             })
-  
         }
     </script>
 </body>

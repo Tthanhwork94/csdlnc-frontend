@@ -310,7 +310,6 @@
             var machinhanh = document.getElementById("maCN").value;
             let madoitac = localStorage.getItem("madoitac");
             let makhachhang=JSON.parse(localStorage.getItem("account")).mataikhoan;
-            let danhsachmon=JSON.parse(localStorage.getItem("cart")).listmon;
             let thongtindonhang={
                     "sdtkhachhang": sdt,
                     "diachigiaohang":diachi,
@@ -320,34 +319,37 @@
                 }
             axios.post("http://localhost:8080/api/khachhang/donhang/insert",thongtindonhang)
             .then(function(response){
-                danhsachmon.map(function(item){
-                    themchitietdon(response.data,item.mamon,item.soluong);
-                    console.log(response.data);
-                    console.log(item);
-                })  
-                init();
-                close_cart();
-                alert("thành công");
+                themchitietdon(response.data)
             })
             .catch(function(error){
                 alert(error);
             });
         }
 
-        function themchitietdon(madondathang,mamon,soluong){
-            let donchitiet={
-                madondathang: madondathang,
-                mamon: mamon,
-                soluong: soluong   
-            }
-            axios.post("http://localhost:8080/api/khachhang/donhangchitiet/insert",donchitiet)
-            .then(function(response){
-                console.log(response.data);
-            })
-            .catch(function(error){
-                console.log(error);
-            })
-  
+        function themchitietdon(madondathang,mamon,){
+            let cart=JSON.parse(localStorage.getItem("cart"));
+            let listmon=cart.listmon;
+            listmon.map(function(item){
+                let donchitiet={
+                    madondathang: madondathang,
+                    mamon: item.mamon,
+                    soluong: item.soluong   
+                }
+                // console.log(donchitiet);
+                try{
+                    axios.post("http://localhost:8080/api/khachhang/donhangchitiet/insert",donchitiet)
+                    .then(function(response){
+                        console.log(response.data);
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    })
+                }catch(e){
+                    console(e);
+                }
+            });
+            init();
+            close_cart();
         }
     </script>
 </body>
