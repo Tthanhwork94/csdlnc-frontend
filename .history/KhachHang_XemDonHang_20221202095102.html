@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery|Khach hang</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="danhSachDonHang.js" defer></script>
+    <script src="validate.js" defer></script>
+    <script src="/function.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="KhachHang_Home.html">Trang chủ</a></li>
+                    <li><a href="KhachHang_DatHang.html">Đặt hàng</a></li>
+                    <li><a href="KhachHang_XemDonHang.html">Xem đơn hàng</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="KhachHang_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- Modal -->
+        <div id="model-chitietsanpham" class="modal">
+            <div class="modal-content">
+                <form action="#" name="fix-product">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Chi tiết đơn hàng</h2>
+                        <span class="close">&times;</span>
+                    </div>
+
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Mã món</th>
+                                    <th>Tên món</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Tuỳ chọn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>Cơm</td>
+                                    <td>2</td>
+                                    <td>50000</td>
+                                    <td>Không hành</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>Rau</td>
+                                    <td>1</td>
+                                    <td>30000</td>
+                                    <td>full toping</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Center-->
+    <div class="center-content" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Danh sách đơn hàng</h2>
+                    <br>
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="madonhang" id="lbmadonhang">Mã đơn hàng:</label>
+                        <input class="inputNhap" type="text" name="madonhang" id="madonhang"
+                            placeholder="Nhập mã đơn hàng" />
+                        <button type="submit" id="chitietdonhang" class="btn-modal">Chi tiết</button>
+                        <button type="submit" id="huydonhang" class="btn-modal">Huỷ đơn</button>
+                    </form>
+                    <br>
+                    <table class='table'>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày lập</th>
+                            <th>SDT khách hàng</th>
+                            <th>Địa chỉ giao</th>
+                            <th>Trạng thái</th>
+                            <th>Tổng số lượng</th>
+                            <th>Phí giao hàng</th>
+                            <th>Thành tiền</th>
+                            <th>Mã chi nhánh</th>
+                            <th>Mã tài xế</th>
+                            <th>Mã khách hàng</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
+            
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        init();
+        let rows = [];
+        async function getDonHang(){
+            let madoitac = localStorage.getItem('madoitac');
+            try {
+                let data = await axios.get("http://localhost:8080/api/doitac/menu/"+madoitac);
+                rows = data.data;
+                renderMenu(rows);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        function renderDonHang(users){
+            let thead = `<tr>
+                            <th>Mã món ăn</th>
+                            <th>Tên món ăn</th>
+                            <th>Miêu tả</th>
+                            <th>Giá</th>
+                            <th>Tình trạng</th>
+                        </tr>`
+            let element = ``;
+            users.filter(value=>{return value.tinhtrang=="còn"}).map( value => {
+                element+=`<tr class="content-product">
+                            <td id="${value.mamon}"> ${value.mamon}</td>
+                            <td>${value.tenmon}</td>
+                            <td>${value.mieuta}</td>
+                            <td>${value.gia}</td>
+                            <td>${value.tinhtrang}</td>
+                            <td><button onclick = "addtoCart({mamon:${value.mamon},tenmon:'${value.tenmon}',mieuta:'${value.mieuta}',gia:${value.gia},tinhtrang:'${value.tinhtrang}'})" type="button" class="btn btn-cart">Thêm Vào Giỏ</button></td>
+                        </tr>
+                `
+            })
+            document.getElementById("table").innerHTML=thead+element;
+        }
+
+        var modal2 = document.getElementById("model-chitietsanpham");
+        var btn2 = document.getElementById("chitietdonhang");
+        // btn2.onclick  = function () {
+        //   var check =document.getElementById("madonhang").value ;
+        //   if (check!="")
+        //   {
+        //     modal2.style.display = "block";
+        //   }
+        // }
+
+
+    </script>
+</body>
+
+</html>

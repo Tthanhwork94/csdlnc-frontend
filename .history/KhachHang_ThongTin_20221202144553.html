@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body onload="getThongtin()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -57,8 +57,21 @@
             <div class="row">
                 <div class="col-12">
                     <h2>Thông tin khách hàng</h2>
-                    <table id="table" class='table'>
-                        
+                    <table class='table'>
+                        <tr>
+                            <th>Mã khách hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>SDT</th>
+                            <th>Địa chỉ</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>Nguyễn Văn B</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>abc@gmail.com</td>
+                        </tr>
                     </table>
                     <!-- Modal -->
                     <!-- Button trigger modal -->
@@ -73,11 +86,6 @@
                                     <span class="close">&times;</span>
                                 </div>
                                 <div class="modal-body">
-                                    <label for="hoten">Họ tên:</label>
-                                    <br>
-                                    <input type="text" name="hoten" id="hoten"
-                                        placeholder="Nhập họ tên" />
-                                    <br>
                                     <label for="sdt">Số điện thoại:</label>
                                     <br>
                                     <input type="text" name="sdt" id="sdt"
@@ -95,8 +103,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
@@ -130,8 +138,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closemdlchangepwd()" type="button" class="btn btn-secondary close-footer2">Đóng</button>
-                                    <button onclick="doiMatKhau()" type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-secondary close-footer2">Đóng</button>
+                                    <button type="submit" class="btn btn-primary order2">Lưu thay đổi</button>
                                 </div>
                             </form>
                         </div>
@@ -189,128 +197,6 @@
             </div>
         </div>
     </div>
-    <script>
-        init();
-        async function getThongtin(){
-            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            try {
-                let data = await axios.get("http://localhost:8080/api/khachhang/infor/"+madoitac);
-                rows = data.data;
-                renderThongtin(rows);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        function renderThongtin(data){
-            let thead = `<tr>
-                            <th>Mã khách hàng</th>
-                            <th>Tên khách hàng</th>
-                            <th>SDT</th>
-                            <th>Địa chỉ</th>
-                            <th>Email</th>
-                        </tr>`
-            let element = ``;
-            element+=`<tr class="table-row">
-                            <td>${data.makhachhang}</td>
-                            <td>${data.hoten}</td>
-                            <td>${data.sodienthoai}</td>
-                            <td>${data.diachi}</td>
-                            <td>${data.email}</td>
-                        </tr>
-                    `
-
-            document.getElementById("table").innerHTML=thead+element;
-        }
-
-        var btn = document.getElementById("fix-password");
-        btn.onclick  = function () {
-            document.getElementById("Model-fix-password").style.display = "block";
-            
-        }   
-        function closemdlchangepwd(){
-            document.getElementById("Model-fix-password").style.display = "none";
-        }
-    
-        function doiMatKhau(){
-            let thongtinmatkhau;
-            let mataikhoan = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            let matkhaucu = document.getElementById("matkhau").value;
-            let matkhaumoi=document.getElementById("matkhaumoi").value;
-            thongtinmatkhau={
-                mataikhoan:mataikhoan,
-                matkhaucu:matkhaucu,
-                matkhaumoi:matkhaumoi
-            }
-            axios.post("http://localhost:8080/api/changepassword",thongtinmatkhau)
-            .then(function(response){
-                if(response.data!=-1){
-                    alert("đổi mật khẩu thành công"+response.data);
-                    closemdlchangepwd();
-                }else{
-                    alert("đổi mật khẩu thất tại");
-                    closemdlchangepwd()
-                }
-            })
-            .catch(function(error){
-                alert("lỗi hệ thống!");
-                closemdlchangepwd();
-            })
-        }
-        var btn2 = document.getElementById("fix-inf");
-        btn2.onclick  = getThongtintoModel;
-
-
-        async function getThongtintoModel(){
-            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            try {
-                let data = await axios.get("http://localhost:8080/api/khachhang/infor/"+madoitac);
-                rows = data.data;
-                showModelupdateInfor (rows);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        function showModelupdateInfor (data) {
-            var hoten =document.getElementById("hoten");
-            var sdt =document.getElementById("sdt");
-            var email =document.getElementById("email");
-            var diachi =document.getElementById("diachi");
-            hoten.value=data.hoten;
-            sdt.value=data.sodienthoai;
-            email.value=data.email;
-            diachi.value=data.diachi;
-            document.getElementById("Model-fix-inf").style.display = "block";   
-        } 
-        function closeinf(){
-            document.getElementById("Model-fix-inf").style.display = "none";  
-        }
-
-        function updateinfor(){
-            let makhachhang = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            var hoten =document.getElementById("hoten");
-            var sdt =document.getElementById("sdt");
-            var email =document.getElementById("email");
-            var diachi =document.getElementById("diachi");
-            let thongtin={
-                makhachhang:makhachhang,
-                email:email.value,
-                diachi:diachi.value,
-                sodienthoai:sdt.value,
-                hoten:hoten.value
-            }
-            // console.log(thongtin);
-            axios.post("http://localhost:8080/api/khachhang/infor/update",thongtin)
-            .then(function(response){
-                alert("đổi thông tin thành công!");
-                closeinf()
-            })
-            .catch(function(error){
-                alert("đã xảy ra lỗi!");
-                closeinf()
-            });
-
-        }
-    </script>
 </body>
 
 </html>

@@ -18,7 +18,6 @@
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
-    <script src="https://momentjs.com/downloads/moment.js"></script>
 </head>
 
 <body onload="getDonHang()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -60,13 +59,40 @@
                     </div>
 
                     <div class="modal-body">
-                        <table id="table_chitiet" class="table">
-                            
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Mã món</th>
+                                    <th>Tên món</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Tuỳ chọn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>Cơm</td>
+                                    <td>2</td>
+                                    <td>50000</td>
+                                    <td>Không hành</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>Rau</td>
+                                    <td>1</td>
+                                    <td>30000</td>
+                                    <td>full toping</td>
+                                </tr>
 
+                            </tbody>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button onclick="close_model()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                     </div>
                 </form>
             </div>
@@ -80,11 +106,43 @@
                 <div class="col-12">
                     <h2>Danh sách đơn hàng</h2>
                     <br>
-                   
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="madonhang" id="lbmadonhang">Mã đơn hàng:</label>
+                        <input class="inputNhap" type="text" name="madonhang" id="madonhang"
+                            placeholder="Nhập mã đơn hàng" />
+                        <button type="submit" id="chitietdonhang" class="btn-modal">Chi tiết</button>
+                        <button type="submit" id="huydonhang" class="btn-modal">Huỷ đơn</button>
+                    </form>
                     <br>
                     <table id="table" class='table'>
-  
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày lập</th>
+                            <th>SDT khách hàng</th>
+                            <th>Địa chỉ giao</th>
+                            <th>Trạng thái</th>
+                            <th>Tổng số lượng</th>
+                            <th>Phí giao hàng</th>
+                            <th>Thành tiền</th>
+                            <th>Mã chi nhánh</th>
+                            <th>Mã tài xế</th>
+                            <th>Mã khách hàng</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>Đã giao</td>
+                            <td>2</td>
+                            <td>30000</td>
+                            <td>100000</td>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>2</td>
+                        </tr>
                         
+            
                     </table>
 
                 </div>
@@ -166,16 +224,14 @@
                             <th>chi nhánh</th>
                             <th>tài xế</th>
                             <th>khách hàng</th>
-                            <th>chi tiết</th>
-                            <th></th>
                         </tr>`
             let element = ``;
             users.map( value => {
               
-                if(value.trangthai==="Chờ tiếp nhận"){
+                if(value.trangthai=="chờ tiếp nhận"){
                     element+=`<tr class="table-row">
                             <td>${value.madondathang}</td>
-                            <td>${(value.ngaylap).substring(0,10)}</td>
+                            <td>${value.ngaylap}</td>
                             <td>${value.sdtkhachhang}</td>
                             <td>${value.diachigiaohang}</td>
                             <td>${value.trangthai}</td>
@@ -184,14 +240,13 @@
                             <td>${value.chinhanh.tenchinhanh}</td>
                             <td>${value.taixe?value.taixe.hoten:"chưa có"}</td>
                             <td>${value.khachhang.hoten}</td>
-                            <td><a onclick="xemchitiet(${value.madondathang})" >chi tiết</a></td>
-                            <td><button onclick="huydon(${value.madondathang})" type="text" id="huy" class="btn-modal">Hủy</button></td>
                         </tr>
                 `
                 }else{
+
                     element+=`<tr class="table-row">
                                 <td>${value.madondathang}</td>
-                                <td>${(value.ngaylap).substring(0,10)}</td>
+                                <td>${value.ngaylap}</td>
                                 <td>${value.sdtkhachhang}</td>
                                 <td>${value.diachigiaohang}</td>
                                 <td>${value.trangthai}</td>
@@ -199,9 +254,7 @@
                                 <td>${value.thanhtien}</td>
                                 <td>${value.chinhanh.tenchinhanh}</td>
                                 <td>${value.taixe?value.taixe.hoten:"chưa có"}</td>
-                                <td>${value.khachhang.hoten}</td>  
-                                <td><a onclick="xemchitiet(${value.madondathang})" >chi tiết</a></td> 
-                                <td></td>     
+                                <td>${value.khachhang.hoten}</td>      
                             </tr>
                     `
                 }
@@ -219,62 +272,7 @@
         //   }
         // }
 
-        function huydon(madonhang){
-            axios.get("http://localhost:8080/api/khachhang/donhang/huy/"+madonhang)
-            .then((result) => {
-                if(result.data!=-1){
-                    alert("đã hủy đơn hàng!");
-                    getDonHang()
-                }else{
-                    alert("xảy ra lỗi!");
-                }
-            }).catch((err) => {
-                
-            });;
-        }
 
-        function xemchitiet(madondathang){
-            xemchitietdonhang(madondathang);
-            let modal=document.getElementById("model-chitietsanpham").style.display="block";
-        }
-
-        function close_model(){
-            let modal=document.getElementById("model-chitietsanpham").style.display="none";
-        }
-
-        async function xemchitietdonhang(madondathang){
-        
-        let data = await axios.get("http://localhost:8080/api/doitac/dondathangchitiet/"+madondathang);
-        rows = data.data;
-        renderDonhangChiTiet(rows);
-        console.log(rows);
-     
-        document.getElementById("exampleModal").style.display="block";
-    }
-
-    function renderDonhangChiTiet(data){
-        let thead = `<thead>
-                            <tr>
-                                <th>Mã đơn hàng</th>
-                                <th>Tên món</th>
-                                <th>Số lượng</th>
-                                <th>giá</th>
-                                <th>đơn giá</th>
-                            </tr>
-                        </thead>`
-        let element = ``;                                            
-        data.map( value => {
-            element+=`<tr>
-                        <td>${value.madondathang}</td>
-                        <td>${value.tenmon}</td>
-                        <td>${value.soluong}</td>
-                        <td>${value.dongia/value.soluong}</td>
-                        <td>${value.dongia}</td>
-                    </tr> 
-            `  
-        })
-        document.getElementById("table_chitiet").innerHTML=thead+element;
-    }
     </script>
 </body>
 

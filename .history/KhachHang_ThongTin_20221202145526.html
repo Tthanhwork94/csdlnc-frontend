@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body onload="getThongtin()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -57,8 +57,21 @@
             <div class="row">
                 <div class="col-12">
                     <h2>Thông tin khách hàng</h2>
-                    <table id="table" class='table'>
-                        
+                    <table class='table'>
+                        <tr>
+                            <th>Mã khách hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>SDT</th>
+                            <th>Địa chỉ</th>
+                            <th>Email</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>Nguyễn Văn B</td>
+                            <td>0123456789</td>
+                            <td>Linh Trung - Thủ Đức</td>
+                            <td>abc@gmail.com</td>
+                        </tr>
                     </table>
                     <!-- Modal -->
                     <!-- Button trigger modal -->
@@ -73,11 +86,6 @@
                                     <span class="close">&times;</span>
                                 </div>
                                 <div class="modal-body">
-                                    <label for="hoten">Họ tên:</label>
-                                    <br>
-                                    <input type="text" name="hoten" id="hoten"
-                                        placeholder="Nhập họ tên" />
-                                    <br>
                                     <label for="sdt">Số điện thoại:</label>
                                     <br>
                                     <input type="text" name="sdt" id="sdt"
@@ -95,8 +103,8 @@
                                     <br>
                                 </div>
                                 <div class="modal-footer">
-                                    <button onclick="closeinf()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                                    <button onclick="updateinfor()" type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
+                                    <button type="button" class="btn btn-secondary close-footer">Đóng</button>
+                                    <button type="submit" id="luuInf" class="btn btn-primary order">Lưu thay
                                         đổi</button>
                                 </div>
                             </form>
@@ -194,7 +202,7 @@
         async function getThongtin(){
             let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/khachhang/infor/"+madoitac);
+                let data = await axios.get("http://localhost:8080/api/doitac/infor/"+madoitac);
                 rows = data.data;
                 renderThongtin(rows);
             } catch (error) {
@@ -203,20 +211,28 @@
         }
         function renderThongtin(data){
             let thead = `<tr>
-                            <th>Mã khách hàng</th>
-                            <th>Tên khách hàng</th>
-                            <th>SDT</th>
-                            <th>Địa chỉ</th>
+                            <th>Mã đối tác</th>
                             <th>Email</th>
+                            <th>Tên quán</th>
+                            <th>Người đại diện</th>
+                            <th>Số lượng chi nhánh</th>
+                            <th>Đơn hàng dự kiến</th>
+                            <th>Loại ẩm thực</th>
+                            <th>Địa chỉ kinh doanh</th>
+                            <th>SĐT</th>
                         </tr>`
             let element = ``;
             element+=`<tr class="table-row">
-                            <td>${data.makhachhang}</td>
-                            <td>${data.hoten}</td>
-                            <td>${data.sodienthoai}</td>
-                            <td>${data.diachi}</td>
-                            <td>${data.email}</td>
-                        </tr>
+                        <td>${data.madoitac}</td>
+                        <td>${data.email}</td>
+                        <td>${data.tenquan}</td>
+                        <td>${data.nguoidaidien}</td>
+                        <td>${data.slchinhanh}</td>
+                        <td>${data.donhangdukien}</td>
+                        <td>${data.loaiamthuc}</td>
+                        <td>${data.diachikinhdoanh}</td>
+                        <td>${data.sdt}</td>
+                    </tr>
                     `
 
             document.getElementById("table").innerHTML=thead+element;
@@ -263,7 +279,7 @@
         async function getThongtintoModel(){
             let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/khachhang/infor/"+madoitac);
+                let data = await axios.get("http://localhost:8080/api/doitac/infor/"+madoitac);
                 rows = data.data;
                 showModelupdateInfor (rows);
             } catch (error) {
@@ -271,35 +287,47 @@
             }
         }
         function showModelupdateInfor (data) {
-            var hoten =document.getElementById("hoten");
-            var sdt =document.getElementById("sdt");
-            var email =document.getElementById("email");
+            var nguoidaidien =document.getElementById("nguoidaidien");
             var diachi =document.getElementById("diachi");
-            hoten.value=data.hoten;
-            sdt.value=data.sodienthoai;
+            var email =document.getElementById("email");
+            var tenquan =document.getElementById("tenquan") ;
+            var donhangdukien =document.getElementById("donhangdukien");
+            var loaiamthuc =document.getElementById("loaiamthuc");
+            var sdt =document.getElementById("sdt");
+            nguoidaidien.value = data.nguoidaidien;
+            diachi.value=data.diachikinhdoanh;
             email.value=data.email;
-            diachi.value=data.diachi;
-            document.getElementById("Model-fix-inf").style.display = "block";   
+            tenquan.value=data.tenquan;
+            donhangdukien.value=data.donhangdukien;
+            loaiamthuc.value=data.loaiamthuc;
+            sdt.value=data.sdt;
+             document.getElementById("Model-fix-inf").style.display = "block";   
         } 
         function closeinf(){
             document.getElementById("Model-fix-inf").style.display = "none";  
         }
 
         function updateinfor(){
-            let makhachhang = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
-            var hoten =document.getElementById("hoten");
-            var sdt =document.getElementById("sdt");
-            var email =document.getElementById("email");
+            let madoitac = JSON.parse(window.localStorage.getItem('account')).mataikhoan;
+            var nguoidaidien =document.getElementById("nguoidaidien");
             var diachi =document.getElementById("diachi");
+            var email =document.getElementById("email");
+            var tenquan =document.getElementById("tenquan") ;
+            var donhangdukien =document.getElementById("donhangdukien");
+            var loaiamthuc =document.getElementById("loaiamthuc");
+            var sdt =document.getElementById("sdt");
             let thongtin={
-                makhachhang:makhachhang,
+                madoitac:madoitac,
                 email:email.value,
-                diachi:diachi.value,
-                sodienthoai:sdt.value,
-                hoten:hoten.value
+                nguoidaidien:nguoidaidien.value,
+                diachikinhdoanh:diachi.value,
+                tenquan:tenquan.value,
+                donhangdukien:donhangdukien.value,
+                loaiamthuc:loaiamthuc.value,
+                sdt:sdt.value
             }
-            // console.log(thongtin);
-            axios.post("http://localhost:8080/api/khachhang/infor/update",thongtin)
+ 
+            axios.post("http://localhost:8080/api/doitac/infor/change",thongtin)
             .then(function(response){
                 alert("đổi thông tin thành công!");
                 closeinf()

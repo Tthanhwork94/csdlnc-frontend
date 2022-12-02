@@ -61,12 +61,39 @@
 
                     <div class="modal-body">
                         <table id="table_chitiet" class="table">
-                            
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn hàng</th>
+                                    <th>Mã món</th>
+                                    <th>Tên món</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Tuỳ chọn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>Cơm</td>
+                                    <td>2</td>
+                                    <td>50000</td>
+                                    <td>Không hành</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>Rau</td>
+                                    <td>1</td>
+                                    <td>30000</td>
+                                    <td>full toping</td>
+                                </tr>
 
+                            </tbody>
                         </table>
                     </div>
                     <div class="modal-footer">
-                        <button onclick="close_model()" type="button" class="btn btn-secondary close-footer">Đóng</button>
+                        <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                     </div>
                 </form>
             </div>
@@ -80,7 +107,13 @@
                 <div class="col-12">
                     <h2>Danh sách đơn hàng</h2>
                     <br>
-                   
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="madonhang" id="lbmadonhang">Mã đơn hàng:</label>
+                        <input class="inputNhap" type="text" name="madonhang" id="madonhang"
+                            placeholder="Nhập mã đơn hàng" />
+                        <button type="submit" id="chitietdonhang" class="btn-modal">Chi tiết</button>
+                        <button type="submit" id="huydonhang" class="btn-modal">Huỷ đơn</button>
+                    </form>
                     <br>
                     <table id="table" class='table'>
   
