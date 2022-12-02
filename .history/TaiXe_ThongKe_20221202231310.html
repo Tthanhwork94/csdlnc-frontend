@@ -70,9 +70,11 @@
                     <h2>Thống kê thu nhập theo tháng</h2>
                     <br>
                     <form action="#" name="thongKeThang">
-                        <label for="doanhthuthang">Năm</label>
-                        <select name="yearpicker" id="yearpicker"></select>
-                        <button onclick="generatechart()" type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
+                        <label for="doanhthuthang">Từ</label>
+                        <input type="month" name="doanhthuthang" id="doanhthuthang">
+                        <label for="doanhthuthang">Đến</label>
+                        <input type="month" name="doanhthuthang" id="doanhthuthang">
+                        <button type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
                     </form>
                     <br> <br>
                     <!-- hien thi ket qua doanh thu o day -->
@@ -131,28 +133,14 @@
         </div>
     </div>
     <script>
-        init();
-
-        function generatechart(){
-            let mataixe = JSON.parse(localStorage.getItem('account')).mataikhoan;
-            let year = document.getElementById("yearpicker").value;
-            axios.get("http://localhost:8080/api/taixe/thongke/"+mataixe+"/"+year)
-            .then((result) => {
-                thongke(result.data,'năm '+year);
-            }).catch((err) => {
-                alert("lỗi xảy ra!");
-            });
-        }
-        function thongke(data,year){
-            // let data=[40,20,10,16,24,38,74,167,508,784,22,1111];
-            
-            new Chart(document.getElementById("line-chart"), {
+        new Chart(document.getElementById("line-chart"), {
             type: 'line',
             data: {
-                labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
+                labels: [ "January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December" ],
                 datasets: [ { 
-                    data: data,
-                    label: "Doanh thu",
+                    data: [40,20,10,16,24,38,74,167,508,784],
+                    label: "Latin America",
                     borderColor: "#ff6384",
                     fill: false
                 }
@@ -161,38 +149,12 @@
             options: {
                 title: {
                 display: true,
-                text: year
-                }
-            }
-            });
-        }
-        let data=[0,0,0,0,0,0,0,0,0,0,0,0];
-        new Chart(document.getElementById("line-chart"), {
-            type: 'line',
-            data: {
-                labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
-                datasets: [ 
-                ]
-            },
-            options: {
-                title: {
-                display: true,
-                text: "năm 2022"
+                text: 'World population per region (in millions)'
                 }
             }
             });
         </script>
-        
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript">
-        let startYear = 1800;
-        let endYear = new Date().getFullYear();
-        for (i = endYear; i > startYear; i--)
-        {
-        $('#yearpicker').append($('<option />').val(i).html(i));
-        }
-        </script>
+   
 </body>
 
 </html>

@@ -72,7 +72,7 @@
                     <form action="#" name="thongKeThang">
                         <label for="doanhthuthang">Năm</label>
                         <select name="yearpicker" id="yearpicker"></select>
-                        <button onclick="generatechart()" type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
+                        <button type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
                     </form>
                     <br> <br>
                     <!-- hien thi ket qua doanh thu o day -->
@@ -133,19 +133,9 @@
     <script>
         init();
 
-        function generatechart(){
-            let mataixe = JSON.parse(localStorage.getItem('account')).mataikhoan;
-            let year = document.getElementById("yearpicker").value;
-            axios.get("http://localhost:8080/api/taixe/thongke/"+mataixe+"/"+year)
-            .then((result) => {
-                thongke(result.data,'năm '+year);
-            }).catch((err) => {
-                alert("lỗi xảy ra!");
-            });
-        }
-        function thongke(data,year){
-            // let data=[40,20,10,16,24,38,74,167,508,784,22,1111];
-            
+        function thongke(){
+            let data=[40,20,10,16,24,38,74,167,508,784,22,1111];
+            let year = 'năm '+document.getElementById("yearpicker").value;
             new Chart(document.getElementById("line-chart"), {
             type: 'line',
             data: {
@@ -171,7 +161,12 @@
             type: 'line',
             data: {
                 labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
-                datasets: [ 
+                datasets: [ { 
+                    data: data,
+                    label: "Doanh thu",
+                    borderColor: "#ff6384",
+                    fill: false
+                }
                 ]
             },
             options: {

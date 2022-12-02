@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <!-- <script src="danhSachDonHang.js" defer></script> -->
     <script src="validate.js" defer></script>
-    <!-- <script src="nhanDonHang.js" defer></script> -->
+    <!-- <script src="giaoDonHang.js" defer></script> -->
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -105,13 +105,40 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2>Danh sách đơn hàng</h2>
+                    <h2>Danh sách đơn hàng của tôi</h2>
                     <br>
-                    
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="madonhang" id="lbmadonhang">Mã đơn hàng:</label>
+                        <input class="inputNhap" type="text" name="madonhang" id="madonhang"
+                            placeholder="Nhập mã đơn hàng" />
+                        <button type="submit" id="chitietdonhang" class="btn-modal">Chi tiết</button>
+                        <button type="submit" id="dagiao" class="btn-modal">Đã giao</button>
+                    </form>
                     <br>
                     <table id="table" class='table'>
-                        
-  
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày lập</th>
+                            <th>SDT khách hàng</th>
+                            <th>Địa chỉ giao</th>
+                            <th>Phí giao hàng</th>
+                            <th>Thành tiền</th>
+                            <th>Mã chi nhánh</th>
+                            <th>Địa chỉ chi nhánh</th>
+                            <th>Tình trạng</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
+                            <td>Đang giao</td>
+                        </tr>
+
                     </table>
                 </div>
             </div>
@@ -226,18 +253,6 @@
             })
             document.getElementById("table").innerHTML=thead+element;
         }
-
-        function nhandon(madondathang){
-            let mataixe =JSON.parse(localStorage.getItem("account")).mataikhoan;
-            axios.get("http://localhost:8080/api/taixe/nhandon/"+mataixe+"/"+madondathang)
-            .then((result) => {
-                alert("nhận đơn thành công!");
-                getDonHang();
-            }).catch((err) => {
-                alert("lỗi nhận đơn");
-            });
-        }
-
     </script>
 </body>
 

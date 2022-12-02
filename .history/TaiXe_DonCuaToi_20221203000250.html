@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <!-- <script src="danhSachDonHang.js" defer></script> -->
     <script src="validate.js" defer></script>
-    <!-- <script src="nhanDonHang.js" defer></script> -->
+    <!-- <script src="giaoDonHang.js" defer></script> -->
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
@@ -105,13 +105,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2>Danh sách đơn hàng</h2>
+                    <h2>Danh sách đơn hàng của tôi</h2>
                     <br>
                     
                     <br>
                     <table id="table" class='table'>
                         
-  
                     </table>
                 </div>
             </div>
@@ -170,9 +169,9 @@
         init();
         let rows = [];
         async function getDonHang(){
-            let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
+            let mataixe = JSON.parse(localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/donhang");
+                let data = await axios.get("http://localhost:8080/api/taixe/donhang/"+mataixe);
                 rows = data.data;
                 renderDonHang(rows);
             } catch (error) {
@@ -181,6 +180,7 @@
         }
 
         function renderDonHang(users){
+            let mataixe = JSON.parse(localStorage.getItem('account')).mataikhoan;
             let thead = `<tr>
                             <th>Mã đơn hàng</th>
                             <th>Ngày lập</th>
@@ -193,9 +193,11 @@
                             <th></th>
                         </tr>`
             let element = ``;
-            users.map( value => {
+            users.filter(value=>{
+                return value.trangthai != "Chờ tiếp nhận";
+            }).map( value => {
               
-                if(value.trangthai==="Chờ tiếp nhận"){
+                if(value.trangthai==="đang chuẩn bị"){
                     element+=`<tr class="table-row">
                             <td>${value.madondathang}</td>
                             <td>${(value.ngaylap).substring(0,10)}</td>
@@ -205,39 +207,41 @@
                             <td>${value.thanhtien}</td>
                             <td>${value.chinhanh.tenchinhanh}</td>
                             <td>${value.chinhanh.diachi}</td>
-                            <td><button onclick="nhandon(${value.madondathang})" type="text" id="huy" class="btn-modal">Nhận đơn</button></td>
+                            <td><button onclick="laydon(${value.madondathang})" type="text" id="huy" class="btn-modal">Lấy đơn</button></td>
                         </tr>
                 `
                 }
-                // else{
-                //     element+=`<tr class="table-row">
-                //             <td>${value.madondathang}</td>
-                //             <td>${(value.ngaylap).substring(0,10)}</td>
-                //             <td>${value.diachigiaohang}</td>
-                //             <td>${value.trangthai}</td>
-                //             <td>${value.phigiaohang}</td>
-                //             <td>${value.thanhtien}</td>
-                //             <td>${value.chinhanh.tenchinhanh}</td>
-                //             <td>${value.chinhanh.diachi}</td>
-                //             <td></td>
-                //         </tr>
-                //     `
-                // }
+                else if(value.trangthai==="đang chuẩn bị"){
+
+                }
+                else{
+                    element+=`<tr class="table-row">
+                            <td>${value.madondathang}</td>
+                            <td>${(value.ngaylap).substring(0,10)}</td>
+                            <td>${value.diachigiaohang}</td>
+                            <td>${value.trangthai}</td>
+                            <td>${value.phigiaohang}</td>
+                            <td>${value.thanhtien}</td>
+                            <td>${value.chinhanh.tenchinhanh}</td>
+                            <td>${value.chinhanh.diachi}</td>
+                            <td></td>
+                        </tr>
+                    `
+                }
             })
             document.getElementById("table").innerHTML=thead+element;
         }
 
-        function nhandon(madondathang){
+        function laydon(madonhang){
             let mataixe =JSON.parse(localStorage.getItem("account")).mataikhoan;
-            axios.get("http://localhost:8080/api/taixe/nhandon/"+mataixe+"/"+madondathang)
+            axios.get("http://localhost:8080/api/taixe/laydon/"+mataixe+"/"+madonhang)
             .then((result) => {
-                alert("nhận đơn thành công!");
+                alert("lấy đơn thành công!");
                 getDonHang();
             }).catch((err) => {
                 alert("lỗi nhận đơn");
             });
         }
-
     </script>
 </body>
 

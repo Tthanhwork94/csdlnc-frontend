@@ -107,10 +107,35 @@
                 <div class="col-12">
                     <h2>Danh sách đơn hàng</h2>
                     <br>
-                    
+                    <form action="#" name="add-product">
+                        <label class="labelNhap" for="madonhang" id="lbmadonhang">Mã đơn hàng:</label>
+                        <input class="inputNhap" type="text" name="madonhang" id="madonhang"
+                            placeholder="Nhập mã đơn hàng" />
+                        <button type="submit" id="chitietdonhang" class="btn-modal">Chi tiết</button>
+                        <button type="submit" id="nhandonhang" class="btn-modal">Nhận đơn</button>
+                    </form>
                     <br>
                     <table id="table" class='table'>
-                        
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày lập</th>
+                            <th>SDT khách hàng</th>
+                            <th>Địa chỉ giao</th>
+                            <th>Phí giao hàng</th>
+                            <th>Thành tiền</th>
+                            <th>Mã chi nhánh</th>
+                            <th>Địa chỉ chi nhánh</th>
+                        </tr>
+                        <tr class="table-row">
+                            <td>1</td>
+                            <td>2022-11-10</td>
+                            <td>0123456789</td>
+                            <td>50 - Linh Trung - Thủ Đức</td>
+                            <td>20000</td>
+                            <td>70000</td>
+                            <td>2</td>
+                            <td>8 - Linh Trung - Thủ Đức</td>
+                        </tr>
   
                     </table>
                 </div>
@@ -169,10 +194,10 @@
     <script>
         init();
         let rows = [];
-        async function getDonHang(){
+        function getDonHang(){
             let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/donhang");
+                let data = axios.get("http://localhost:8080/api/donhang");
                 rows = data.data;
                 renderDonHang(rows);
             } catch (error) {
@@ -229,13 +254,8 @@
 
         function nhandon(madondathang){
             let mataixe =JSON.parse(localStorage.getItem("account")).mataikhoan;
-            axios.get("http://localhost:8080/api/taixe/nhandon/"+mataixe+"/"+madondathang)
-            .then((result) => {
-                alert("nhận đơn thành công!");
-                getDonHang();
-            }).catch((err) => {
-                alert("lỗi nhận đơn");
-            });
+            axios.get("http://localhost:8080/api/taixe/nhandon/"+mataixe+"/"+madondathang);
+            getDonHang();
         }
 
     </script>

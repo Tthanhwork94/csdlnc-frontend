@@ -16,6 +16,15 @@
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -71,8 +80,8 @@
                     <br>
                     <form action="#" name="thongKeThang">
                         <label for="doanhthuthang">Năm</label>
-                        <select name="yearpicker" id="yearpicker"></select>
-                        <button onclick="generatechart()" type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
+                        <input type="text" class="form-control" name="datepicker" id="datepicker">
+                        <button type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
                     </form>
                     <br> <br>
                     <!-- hien thi ket qua doanh thu o day -->
@@ -132,26 +141,22 @@
     </div>
     <script>
         init();
-
-        function generatechart(){
-            let mataixe = JSON.parse(localStorage.getItem('account')).mataikhoan;
-            let year = document.getElementById("yearpicker").value;
-            axios.get("http://localhost:8080/api/taixe/thongke/"+mataixe+"/"+year)
-            .then((result) => {
-                thongke(result.data,'năm '+year);
-            }).catch((err) => {
-                alert("lỗi xảy ra!");
-            });
-        }
-        function thongke(data,year){
-            // let data=[40,20,10,16,24,38,74,167,508,784,22,1111];
-            
-            new Chart(document.getElementById("line-chart"), {
+        $(document).ready(function(){
+        $("#datepicker").datepicker({
+            format: "yyyy",
+            viewMode: "years", 
+            minViewMode: "years",
+            autoclose:true
+        });   
+        })
+        
+        new Chart(document.getElementById("line-chart"), {
             type: 'line',
             data: {
-                labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
+                labels: [ "January", "February", "March", "April", "May", "June",
+"July", "August", "September", "October", "November", "December" ],
                 datasets: [ { 
-                    data: data,
+                    data: [40,20,10,16,24,38,74,167,508,784,22,1111],
                     label: "Doanh thu",
                     borderColor: "#ff6384",
                     fill: false
@@ -161,38 +166,12 @@
             options: {
                 title: {
                 display: true,
-                text: year
-                }
-            }
-            });
-        }
-        let data=[0,0,0,0,0,0,0,0,0,0,0,0];
-        new Chart(document.getElementById("line-chart"), {
-            type: 'line',
-            data: {
-                labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
-                datasets: [ 
-                ]
-            },
-            options: {
-                title: {
-                display: true,
-                text: "năm 2022"
+                text: 'Năm 2022'
                 }
             }
             });
         </script>
-        
-
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript">
-        let startYear = 1800;
-        let endYear = new Date().getFullYear();
-        for (i = endYear; i > startYear; i--)
-        {
-        $('#yearpicker').append($('<option />').val(i).html(i));
-        }
-        </script>
+   
 </body>
 
 </html>
