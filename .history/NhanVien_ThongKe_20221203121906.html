@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Food Delivery|Nhan vien</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <!-- <script src="validate.js" defer></script> -->
+    <script src="/function.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <!-- Header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img class="logo" src="images/chef-hat.png" alt=""> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="NhanVien_Home.html">Trang chủ</a></li>
+                    <li><a href="NhanVien_XemHopDong.html">Xem hợp đồng</a></li>
+                    <li><a href="NhanVien_ThongKe.html">Thống kê</a></li>
+                    <li class="dropdown">
+                        <a href="#" id="account" class="dropdown-toggle" data-toggle="dropdown">Tài khoản<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="NhanVien_ThongTin.html">Thông tin</a></li>
+                            <li><a href="index.html"><span class="glyphicon glyphicon-log-out logo"> </span> Đăng
+                                    xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </nav>
+
+    <!-- Center-->
+    <div class="center-content" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 products">
+                        
+                    <h2>Thống kê thu nhập theo tháng</h2>
+                    <br>
+                    <form action="#" name="thongKeThang">
+                        <label for="doanhthuthang">Năm</label>
+                        <select name="yearpicker" id="yearpicker"></select>
+                        <button onclick="generatechart()" type="submit" id="xemdoanhthuthang" class="btn-modal">Xem doanh thu</button>
+                    </form>
+                    <br> <br>
+                    <!-- hien thi ket qua doanh thu o day -->
+                    <canvas id="line-chart" width="800" height="450"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h3>Dịch vụ</h3>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#">Đối tác</a></li>
+                        <li class="nav-item mb-2"><a href="#">Khách hàng</a></li>
+                        <li class="nav-item mb-2"><a href="#">Nhân viên</a></li>
+                        <li class="nav-item mb-2"><a href="#">Tài xế</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Liên hệ</h3>
+                    <ul class="nav flex-column">
+                        <li>+84 935143595</li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Tiktok</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Email</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <h3>Công ty</h3>
+                    <ul class="nav flex-column">
+                        <li><a href="#">Lịch sử</a></li>
+                        <li><a href="#">Câu chuyện</a></li>
+                        <li><a href="#">Đội ngũ</a></li>
+                        <li><a href="#">Công việc</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3">
+                    <form>
+                        <h2>Đăng ký nhận thông tin</h2>
+                        <div>
+                            <label for="newsletter1" class="visually-hidden">Email</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Nhập email ở đây">
+                            <br>
+                            <button class="btn btn-primary" type="button">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        init();
+
+       
+        function renderthongke(){
+            
+        }
+        function thongke(){
+            var year = document.getElementById("yearpicker").value;
+            var doanhthu;
+            var soluong;
+            axios.get("http://localhost:8080/api/nhanvien/thongke/"+year)
+            .then((result) => {
+                doanhthu=result.data[0];
+                soluong=result.data[1];
+                console.log(doanhthu);
+                console.log(soluong);
+                new Chart(document.getElementById("line-chart"), {
+                type: 'line',
+                data: {
+                    labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
+                    datasets: [ { 
+                        data: doanhthu,
+                        label: "Doanh thu",
+                        borderColor: "#ff6384",
+                        fill: false
+                    },
+                    { 
+                        data: soluong,
+                        label: "Số lượng",
+                        borderColor: "#47c2cb",
+                        fill: false
+                    },
+                    ]
+                },
+                options: {
+                    title: {
+                    display: true,
+                    text: "năm 2022"
+                    }
+                }
+                });
+            }).catch((err) => {
+                alert("xảy ra lỗi");
+            });
+
+        }
+
+
+        
+        new Chart(document.getElementById("line-chart"), {
+            type: 'line',
+            data: {
+                labels: [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October" ,"November", "December" ],
+                datasets: [ { 
+                    data: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    label: "Doanh thu",
+                    borderColor: "#ff6384",
+                    fill: false
+                },
+                { 
+                    data: [0,0,0,0,0,0,0,0,0,0,0,0],
+                    label: "Số lượng",
+                    borderColor: "#47c2cb",
+                    fill: false
+                },
+                ]
+            },
+            options: {
+                title: {
+                display: true,
+                text: "năm"
+                }
+            }
+            });
+        </script>
+        
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        let startYear = 1800;
+        let endYear = new Date().getFullYear();
+        for (i = endYear; i > startYear; i--)
+        {
+        $('#yearpicker').append($('<option />').val(i).html(i));
+        }
+        </script>
+</body>
+
+</html>
