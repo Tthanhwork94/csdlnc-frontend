@@ -131,7 +131,6 @@
     <script>
         init();
         let rows = [];
-        getChinhanhdoitac()
         async function getMenu(){
             let madoitac = localStorage.getItem('madoitac');
             try {
@@ -209,8 +208,10 @@
                 let madoitac=localStorage.getItem("madoitac");
                 axios.get("http://localhost:8080/api/doitac/chinhanh/"+madoitac)
                 .then(function(res){
-                    localStorage.setItem("listchinhanh",JSON.stringify(res.data));
+                    
                 });
+                rows = data.data;
+                localStorage.setItem("listchinhanh",JSON.stringify(rows));
             } catch (error) {
                 console.log(error);
             }
@@ -304,11 +305,7 @@
             let listmon=cart.listmon;
             for(let i = 0;i<listmon.length;i++){
                 if(listmon[i].mamon==mamon){
-                    cart.tongtien=cart.tongtien-listmon[i].gia*listmon[i].soluong;
                     listmon.splice(i, 1);
-                    showToast("đã xóa món khỏi giỏ hàng!",'info');
-                    renderCart(cart);
-                    modal.style.display = "block";
                 }
             }
             cart.listmon=listmon;

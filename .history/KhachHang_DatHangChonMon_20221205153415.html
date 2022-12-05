@@ -304,11 +304,7 @@
             let listmon=cart.listmon;
             for(let i = 0;i<listmon.length;i++){
                 if(listmon[i].mamon==mamon){
-                    cart.tongtien=cart.tongtien-listmon[i].gia*listmon[i].soluong;
                     listmon.splice(i, 1);
-                    showToast("đã xóa món khỏi giỏ hàng!",'info');
-                    renderCart(cart);
-                    modal.style.display = "block";
                 }
             }
             cart.listmon=listmon;
