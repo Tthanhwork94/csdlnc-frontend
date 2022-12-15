@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="validate.js" defer></script>
+    <!-- <script src="validate.js" defer></script> -->
     <!-- <script src="datHang.js" defer></script> -->
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -152,7 +152,7 @@
                             <th>Tình trạng</th>
                         </tr>`
             let element = ``;
-            users.filter(value=>{return value.tinhtrang=="còn" || value.tinhtrang=="Còn"}).map( value => {
+            users.filter(value=>{return value.tinhtrang=="còn"}).map( value => {
                 element+=`<tr class="content-product">
                             <td id="${value.mamon}"> ${value.mamon}</td>
                             <td>${value.tenmon}</td>
@@ -249,7 +249,7 @@
 
                     let listchinhanh =JSON.parse(localStorage.getItem("listchinhanh"));
                     listchinhanh.filter(function(item){
-                        return item.tinhtrang!='tạm nghỉ';
+                        return item.tinhtrang
                     }).map(function(item){
                         footer2+=`<option value="${item.machinhanh}">${item.tenchinhanh}</option>`
                     })
@@ -269,9 +269,9 @@
                 </div>
                 <div class="modal-footer">                    
                         <button onclick="close_cart()" type="button" class="btn btn-secondary close-footer">Đóng</button>
-                        <button onclick="dathang()" type="button" id="thanhtoan" class="btn btn-primary order">Đặt hàng</button>
+                        <button onclick="dathang()" type="submit" id="thanhtoan" class="btn btn-primary order">Đặt hàng</button>
                 </div>
-            </form>README.md
+            </form>
             </div>
             `;
             let element = ``;
@@ -326,7 +326,6 @@
             let madoitac = localStorage.getItem("madoitac");
             let makhachhang=JSON.parse(localStorage.getItem("account")).mataikhoan;
             let danhsachmon=JSON.parse(localStorage.getItem("cart")).listmon;
-
             let thongtindonhang={
                     "sdtkhachhang": sdt,
                     "diachigiaohang":diachi,

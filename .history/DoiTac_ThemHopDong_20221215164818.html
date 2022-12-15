@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                            <button onclick="insertHopDong()" type="button" class="btn btn-primary order" id="nhaphang">Xác nhận</button>
+                            <button onclick="insertHopDong()" type="text" class="btn btn-primary order" id="nhaphang">Xác nhận</button>
                     </div>
                 </form>
                 </div>
@@ -284,7 +284,7 @@ function renderChinhanh(data){
                         trangthai: 'chưa kích hoạt',
                         madoitac:madoitac
                     }
-        if(stk==='' || nganhang==='' || ngaylap===''){
+        if(stk=='' || nganhang=='' || ngaylap==''){
             showToast("Thiếu thông tin, thêm thất bại!",'error');
             return;
         }
@@ -300,7 +300,6 @@ function renderChinhanh(data){
                     listchitiethopdong.push(HopDongChiTiet);
                     
                 })
-                console.log(listchitiethopdong);
                 insertHopDongChiTiet(listchitiethopdong); 
             }).catch(function(error){
                 
@@ -311,8 +310,7 @@ function renderChinhanh(data){
 
     }
 
-    function insertHopDongChiTiet(listhopdong){   
-        console.log(listhopdong);   
+    function insertHopDongChiTiet(listhopdong){      
         axios.post("http://localhost:8080/api/doitac/hopdong/insertchitiet",listhopdong)
         .then(function(response){
             showToast("thêm họp đồng thành công!",'success');

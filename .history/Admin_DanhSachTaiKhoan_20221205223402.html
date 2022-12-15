@@ -191,7 +191,7 @@
                         </tr>`
             let element = ``;
             users.filter(value =>{return value.loaitaikhoan!='admin'}).map( value => {
-                if(value.trangthai==="đã kích hoạt"||value.trangthai==="Đã kích hoạt"){
+                if(value.trangthai==="đã kích hoạt" ){
                     element+=`<tr class="table-row">
                             <td>${value.mataikhoan}</td>
                             <td>${value.tendangnhap}</td>
