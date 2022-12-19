@@ -189,7 +189,6 @@
                             <th>Phí giao hàng</th>
                             <th>Thành tiền</th>
                             <th>chi nhánh</th>
-                            <th>địa chỉ chi nhanh</th>
                             <th>tài xế</th>
                             <th>khách hàng</th>
                             <th>chi tiết</th>
@@ -206,7 +205,6 @@
                                 <td>${value.trangthai}</td>
                                 <td>${value.phigiaohang}</td>
                                 <td>${value.thanhtien}</td>
-                                <td>${value.chinhanh.tenchinhanh}</td>
                                 <td>${value.diachichinhanh}</td>
                                 <td>${value.tentaixe == ''?"chưa cập nhật tên":value.tentaixe == null?'chưa có':value.tentaixe}</td>
                                 <td>${value.tenkhachhang}</td>
@@ -224,10 +222,9 @@
                                 <td>${value.trangthai}</td>
                                 <td>${value.phigiaohang}</td>
                                 <td>${value.thanhtien}</td>
-                                <td>${value.chinhanh.tenchinhanh}</td>
-                                <td>${value.diachichinhanh}</td>
-                                <td>${value.tentaixe == ''?"chưa cập nhật tên":value.tentaixe == null?'chưa có':value.tentaixe}</td>
-                                <td>${value.tenkhachhang == ''?"chưa cập nhật tên":value.tenkhachhang == null?'chưa có':value.tenkhachhang}</td>
+                                <td>${value.chinhanh.machinhanh}</td>
+                                <td>chưa có</td>
+                                <td>${value.khachhang.makhachhang}</td>
                                 <td><a onclick="xemchitietdonhang(${value.madondathang})">chi tiết</a></td>
                                 <td></td>
                             </tr>

@@ -268,16 +268,15 @@
             axios.post("http://localhost:8080/api/register",account)
             .then(function(res){
                 // window.localStorage.setItem('account', account);
-                showToast("thêm nhân viên thành công!",'success');
-                username.value='';
-                password.value='';
-                confirmpwd.value='';
-                close_model()
+                showToast("thêm nhân viên thành công!",'success')
                 getTaikhoan();                
             }).catch(function(error){
                 if(error.response.status===409){
                     showToast("đã tồn tại!",'error')
-                    
+                    username.value='';
+                    password.value='';
+                    confirmpwd.value='';
+                    close_model()
                     getTaikhoan();  
                 }else{
                     showToast("xảy ra lỗi!",'error')

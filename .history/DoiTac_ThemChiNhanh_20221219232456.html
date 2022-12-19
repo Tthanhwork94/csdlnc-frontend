@@ -170,7 +170,7 @@
             let tinhtrang= $("#tinhtrangchinhanh :selected").text();
             let madoitac = JSON.parse(window.localStorage.getItem("account")).mataikhoan;
 
-            if (parseInt(giomocua) >= parseInt(giodongcua) || parseInt(giomocua)<=0 || parseInt(giodongcua)<=0 || parseInt(giomocua)>24 || parseInt(giodongcua)>24){
+            if (parseInt(giomocua) >= parseInt(giodongcua) || parseInt(giomocua)<=0 || parseInt(giodongcua)<=0){
                 showToast("thời gian không hợp lệ!",'error');
                 return;
             }
