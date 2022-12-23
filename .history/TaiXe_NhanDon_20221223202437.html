@@ -197,9 +197,7 @@
                             <th></th>
                         </tr>`
             let element = ``;
-            users.filter(value => {
-                return value.trangthai!='đã hủy'
-            }).map( value => {
+            users.map( value => {
                 if(value.mataixe == null){
                     element+=`<tr class="table-row">
                             <td>${value.madondathang}</td>

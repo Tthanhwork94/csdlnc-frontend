@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <!-- <script src="danhSachDonHang.js" defer></script> -->
     <script src="validate.js" defer></script>
-    <!-- <script src="nhanDonHang.js" defer></script> -->
+    <!-- <script src="giaoDonHang.js" defer></script> -->
     <script src="/function.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body onload="getDonHang()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -76,10 +76,27 @@
                                     <th>Tuỳ chọn</th>
                                 </tr>
                             </thead>
-                   
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>Cơm</td>
+                                    <td>2</td>
+                                    <td>50000</td>
+                                    <td>Không hành</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>Rau</td>
+                                    <td>1</td>
+                                    <td>30000</td>
+                                    <td>full toping</td>
+                                </tr>
+
+                            </tbody>
                         </table>
                     </div>
-    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                     </div>
@@ -93,28 +110,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h2>Danh sách đơn hàng</h2>
+                    <h2>Danh sách đơn hàng của tôi</h2>
                     <br>
                     
                     <br>
                     <table id="table" class='table'>
                         
-  
                     </table>
-                    <ul class="pagination">
-                        <li><a onclick="getDonHang(0)" href="#">0</a></li>
-                        <li><a onclick="getDonHang(1)" href="#">1</a></li>
-                        <li><a onclick="getDonHang(2)" href="#">2</a></li>
-                        <li><a onclick="getDonHang(3)" href="#">3</a></li>
-                        <li><a onclick="getDonHang(4)" href="#">4</a></li>
-                        <li><a onclick="getDonHang(5)" href="#">5</a></li>
-                        <li><a onclick="getDonHang(6)" href="#">6</a></li>
-                        <li><a onclick="getDonHang(7)" href="#">7</a></li>
-                        <li><a onclick="getDonHang(8)" href="#">8</a></li>
-                        <li><a onclick="getDonHang(9)" href="#">9</a></li>
-                        <li><a onclick="getDonHang(10)" href="#">10</a></li>
-                        <li><a onclick="getDonHang(11)" href="#">11</a></li>
-                      </ul>
                 </div>
             </div>
         </div>
@@ -171,11 +173,10 @@
     <script>
         init();
         let rows = [];
-        getDonHang(0)
-        async function getDonHang(page){
-            let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
+        async function getDonHang(){
+            let mataixe = JSON.parse(localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/donhang/"+page);
+                let data = await axios.get("http://localhost:8080/api/taixe/donhang/"+mataixe);
                 rows = data.data;
                 renderDonHang(rows);
             } catch (error) {
@@ -184,12 +185,14 @@
         }
 
         function renderDonHang(users){
+            let mataixe = JSON.parse(localStorage.getItem('account')).mataikhoan;
             let thead = `<tr>
                             <th>Mã đơn hàng</th>
                             <th>Ngày lập</th>
                             <th>SDT khách hàng</th>
+                            <th>khách hàng</th>
                             <th>Địa chỉ giao</th>
-                            <th>Tình trạng</th>
+                            <th>Trạng thái</th>
                             <th>Phí giao hàng</th>
                             <th>Thành tiền</th>
                             <th>chi nhánh</th>
@@ -197,53 +200,84 @@
                             <th></th>
                         </tr>`
             let element = ``;
-            users.filter(value => {
-                return value.trangthai!='đã hủy'
+            let element_giaothanhcong=``;
+            users.filter(value=>{
+                return true;
             }).map( value => {
-                if(value.mataixe == null){
+              
+                if(value.trangthai==="đang chuẩn bị"){
                     element+=`<tr class="table-row">
                             <td>${value.madondathang}</td>
                             <td>${(value.ngaylap).substring(0,10)}</td>
                             <td>${value.sdtkhachhang}</td>
+                            <td>${value.tenkhachhang}</td>
                             <td>${value.diachigiaohang}</td>
                             <td>${value.trangthai}</td>
                             <td>${value.phigiaohang}</td>
                             <td>${value.thanhtien}</td>
                             <td>${value.tenchinhanh}</td>
                             <td>${value.diachichinhanh}</td>
-                            <td><button onclick="nhandon(${value.madondathang})" type="text" id="huy" class="btn-modal">Nhận đơn</button></td>
+                            <td><button onclick="laydon(${value.madondathang})" type="text" id="huy" class="btn-modal"> &nbsp &nbsp &nbspLấy đơn &nbsp &nbsp &nbsp</button></td>
                         </tr>
                 `
                 }
-                // else{
-                //     element+=`<tr class="table-row">
-                //             <td>${value.madondathang}</td>
-                //             <td>${(value.ngaylap).substring(0,10)}</td>
-                //             <td>${value.diachigiaohang}</td>
-                //             <td>${value.trangthai}</td>
-                //             <td>${value.phigiaohang}</td>
-                //             <td>${value.thanhtien}</td>
-                //             <td>${value.chinhanh.tenchinhanh}</td>
-                //             <td>${value.chinhanh.diachi}</td>
-                //             <td></td>
-                //         </tr>
-                //     `
-                // }
+                else if(value.trangthai==="đã nhận đơn hàng"){
+                    element+=`<tr class="table-row">
+                            <td>${value.madondathang}</td>
+                            <td>${(value.ngaylap).substring(0,10)}</td>
+                            <td>${value.sdtkhachhang}</td>
+                            <td>${value.tenkhachhang}</td>
+                            <td>${value.diachigiaohang}</td>
+                            <td>${value.trangthai}</td>
+                            <td>${value.phigiaohang}</td>
+                            <td>${value.thanhtien}</td>
+                            <td>${value.tenchinhanh}</td>
+                            <td>${value.diachichinhanh}</td>
+                            <td><button onclick="giaothanhcong(${value.madondathang})" type="text" id="huy" class="btn-modal">Giao thành công</button></td>
+                        </tr>
+                `
+                }
+                else{
+                    element+=`<tr class="table-row">
+                            <td>${value.madondathang}</td>
+                            <td>${(value.ngaylap).substring(0,10)}</td>
+                            <td>${value.sdtkhachhang}</td>
+                            <td>${value.tenkhachhang}</td>
+                            <td>${value.diachigiaohang}</td>
+                            <td>${value.trangthai}</td>
+                            <td>${value.phigiaohang}</td>
+                            <td>${value.thanhtien}</td>
+                            <td>${value.tenchinhanh}</td>
+                            <td>${value.diachichinhanh}</td>
+                            <td></td>
+                        </tr>
+                    `
+                }
             })
             document.getElementById("table").innerHTML=thead+element;
         }
 
-        function nhandon(madondathang){
+        function laydon(madonhang){
             let mataixe =JSON.parse(localStorage.getItem("account")).mataikhoan;
-            axios.get("http://localhost:8080/api/taixe/nhandon/"+mataixe+"/"+madondathang)
+            axios.get("http://localhost:8080/api/taixe/laydon/"+mataixe+"/"+madonhang)
             .then((result) => {
-                showToast("nhận đơn thành công!",'success');
-                getDonHang(0);
+                showToast("lấy đơn thành công!",'success');
+                getDonHang();
             }).catch((err) => {
                 showToast("lỗi lấy đơn!",'error');
             });
         }
 
+        function giaothanhcong(madonhang){
+            let mataixe =JSON.parse(localStorage.getItem("account")).mataikhoan;
+            axios.get("http://localhost:8080/api/taixe/giaothanhcong/"+mataixe+"/"+madonhang)
+            .then((result) => {
+                showToast("giao thành công!",'success');
+                getDonHang();
+            }).catch((err) => {
+                showToast("lỗi xác nhận!",'error');
+            });
+        }
     </script>
 </body>
 

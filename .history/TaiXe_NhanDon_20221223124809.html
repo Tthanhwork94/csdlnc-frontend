@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body onload="getDonHang()" id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <!-- Header -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -76,10 +76,27 @@
                                     <th>Tuỳ chọn</th>
                                 </tr>
                             </thead>
-                   
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>Cơm</td>
+                                    <td>2</td>
+                                    <td>50000</td>
+                                    <td>Không hành</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>Rau</td>
+                                    <td>1</td>
+                                    <td>30000</td>
+                                    <td>full toping</td>
+                                </tr>
+
+                            </tbody>
                         </table>
                     </div>
-    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary close-footer">Đóng</button>
                     </div>
@@ -101,20 +118,6 @@
                         
   
                     </table>
-                    <ul class="pagination">
-                        <li><a onclick="getDonHang(0)" href="#">0</a></li>
-                        <li><a onclick="getDonHang(1)" href="#">1</a></li>
-                        <li><a onclick="getDonHang(2)" href="#">2</a></li>
-                        <li><a onclick="getDonHang(3)" href="#">3</a></li>
-                        <li><a onclick="getDonHang(4)" href="#">4</a></li>
-                        <li><a onclick="getDonHang(5)" href="#">5</a></li>
-                        <li><a onclick="getDonHang(6)" href="#">6</a></li>
-                        <li><a onclick="getDonHang(7)" href="#">7</a></li>
-                        <li><a onclick="getDonHang(8)" href="#">8</a></li>
-                        <li><a onclick="getDonHang(9)" href="#">9</a></li>
-                        <li><a onclick="getDonHang(10)" href="#">10</a></li>
-                        <li><a onclick="getDonHang(11)" href="#">11</a></li>
-                      </ul>
                 </div>
             </div>
         </div>
@@ -171,11 +174,10 @@
     <script>
         init();
         let rows = [];
-        getDonHang(0)
-        async function getDonHang(page){
+        async function getDonHang(){
             let makhachhang = JSON.parse(localStorage.getItem('account')).mataikhoan;
             try {
-                let data = await axios.get("http://localhost:8080/api/donhang/"+page);
+                let data = await axios.get("http://localhost:8080/api/taixe/donhang/null");
                 rows = data.data;
                 renderDonHang(rows);
             } catch (error) {
@@ -197,9 +199,7 @@
                             <th></th>
                         </tr>`
             let element = ``;
-            users.filter(value => {
-                return value.trangthai!='đã hủy'
-            }).map( value => {
+            users.map( value => {
                 if(value.mataixe == null){
                     element+=`<tr class="table-row">
                             <td>${value.madondathang}</td>
@@ -209,8 +209,8 @@
                             <td>${value.trangthai}</td>
                             <td>${value.phigiaohang}</td>
                             <td>${value.thanhtien}</td>
-                            <td>${value.tenchinhanh}</td>
-                            <td>${value.diachichinhanh}</td>
+                            <td>${value.chinhanh.tenchinhanh}</td>
+                            <td>${value.chinhanh.diachi}</td>
                             <td><button onclick="nhandon(${value.madondathang})" type="text" id="huy" class="btn-modal">Nhận đơn</button></td>
                         </tr>
                 `
@@ -238,7 +238,7 @@
             axios.get("http://localhost:8080/api/taixe/nhandon/"+mataixe+"/"+madondathang)
             .then((result) => {
                 showToast("nhận đơn thành công!",'success');
-                getDonHang(0);
+                getDonHang();
             }).catch((err) => {
                 showToast("lỗi lấy đơn!",'error');
             });

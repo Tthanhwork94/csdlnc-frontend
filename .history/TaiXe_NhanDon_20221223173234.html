@@ -102,7 +102,6 @@
   
                     </table>
                     <ul class="pagination">
-                        <li><a onclick="getDonHang(0)" href="#">0</a></li>
                         <li><a onclick="getDonHang(1)" href="#">1</a></li>
                         <li><a onclick="getDonHang(2)" href="#">2</a></li>
                         <li><a onclick="getDonHang(3)" href="#">3</a></li>
@@ -197,9 +196,7 @@
                             <th></th>
                         </tr>`
             let element = ``;
-            users.filter(value => {
-                return value.trangthai!='đã hủy'
-            }).map( value => {
+            users.map( value => {
                 if(value.mataixe == null){
                     element+=`<tr class="table-row">
                             <td>${value.madondathang}</td>
@@ -238,7 +235,7 @@
             axios.get("http://localhost:8080/api/taixe/nhandon/"+mataixe+"/"+madondathang)
             .then((result) => {
                 showToast("nhận đơn thành công!",'success');
-                getDonHang(0);
+                getDonHang();
             }).catch((err) => {
                 showToast("lỗi lấy đơn!",'error');
             });
